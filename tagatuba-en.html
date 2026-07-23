@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TAGATUBA · a video studio that makes series</title>
+<meta name="description" content="We turn your company into a series your clients wait for. Monthly video content, scripts and management. Free strategy call.">
+<meta name="theme-color" content="#14161C">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="TAGATUBA">
+<meta property="og:title" content="People don't watch ads anymore. They watch backrooms.">
+<meta property="og:description" content="We turn your company into a series your clients wait for. A new episode every week, one shoot day a month.">
+<meta property="og:url" content="https://tagatuba.ee/">
+<meta property="og:image" content="https://tagatuba.ee/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://tagatuba.ee/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2314161C'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23E5484D'/%3E%3C/svg%3E">
+<!-- TODO before launch: og:image (1200x630) and a real domain -->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+:root{
+  --ink:#14161C;--ink2:#1B1E26;--ink3:#242833;
+  --paper:#F2F3F6;--card:#FFFFFF;
+  --red:#E5484D;--red-soft:#FDECEC;
+  --grey:#9AA1AE;--muted:#667085;--line:#E3E6EC;--line-d:#2B2F3A;
+  --disp:'Archivo',sans-serif;--body:'Instrument Sans',system-ui,sans-serif;--mono:'IBM Plex Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{font-family:var(--body);color:var(--ink);background:var(--paper);line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+.mono{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);margin-right:9px;vertical-align:1px}
+.pulse{animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.pulse{animation:none}.mtrack{animation:none!important}}
+h2{font-family:var(--disp);font-weight:800;font-size:clamp(30px,4.6vw,48px);letter-spacing:-.03em;line-height:1.05}
+h3{font-family:var(--disp)}
+section{padding:88px 0}
+.eyeb{display:flex;align-items:center;margin-bottom:16px}
+.eyeb .mono{color:var(--muted)}
+.sec-sub{margin-top:16px;font-size:17px;color:var(--muted);max-width:680px;line-height:1.65}
+.dark{background:var(--ink);color:#fff}
+.dark .eyeb .mono{color:var(--grey)}
+.dark .sec-sub{color:#B9BFC9}
+.btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:15px;border-radius:12px;padding:14px 24px;cursor:pointer;border:none;transition:transform .12s,background .15s,border-color .15s;font-family:var(--body);justify-content:center}
+.btn:active{transform:scale(.97)}
+.btn-red{background:var(--red);color:#fff}.btn-red:hover{background:#d13d42}
+.btn-ghost-d{background:transparent;color:#fff;border:1px solid var(--line-d)}.btn-ghost-d:hover{border-color:var(--grey)}
+.btn-ink{background:var(--ink);color:#fff}
+.btn-out{background:transparent;color:var(--ink);border:1px solid var(--line)}.btn-out:hover{border-color:var(--ink)}
+.btn-sm{padding:10px 17px;font-size:13.5px}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:60;background:rgba(20,22,28,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line-d)}
+.nav-in{max-width:1140px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:11px;color:#fff}
+.logo .rec{width:10px;height:10px;border-radius:50%;background:var(--red);flex-shrink:0}
+.logo b{font-family:var(--disp);font-weight:900;font-size:19px;letter-spacing:-.02em;display:block;line-height:1}
+.logo em{font-family:var(--mono);font-size:8px;letter-spacing:.16em;color:var(--grey);display:block;margin-top:3px;font-style:normal}
+.nav-links{display:flex;gap:22px;align-items:center}
+.nav-links a{color:var(--grey);font-size:14px;font-weight:500;transition:color .15s}
+.nav-links a:hover{color:#fff}
+.burger{display:none;width:42px;height:42px;border-radius:11px;border:1px solid var(--line-d);background:transparent;cursor:pointer;flex-direction:column;gap:4px;align-items:center;justify-content:center}
+.burger i{display:block;width:17px;height:1.6px;background:#fff;transition:transform .25s,opacity .2s}
+.burger.on i:nth-child(1){transform:translateY(5.6px) rotate(45deg)}
+.burger.on i:nth-child(2){opacity:0}
+.burger.on i:nth-child(3){transform:translateY(-5.6px) rotate(-45deg)}
+.mnav{position:fixed;top:64px;left:0;right:0;background:var(--ink);border-bottom:1px solid var(--line-d);z-index:59;display:none;padding:14px 24px 22px}
+.mnav.on{display:block}
+.mnav a{display:block;color:#fff;font-size:16px;font-weight:600;padding:13px 0;border-bottom:1px solid var(--line-d)}
+.mnav .btn{width:100%;margin-top:14px}
+@media(max-width:980px){.nav-links a:not(.btn){display:none}.nav-links .btn-out{display:none}.burger{display:flex}}
+@media(min-width:981px){.mnav{display:none!important}}
+
+.hero{background:var(--ink);color:#fff;padding:148px 0 0;position:relative;overflow:hidden}
+.hero-rings{position:absolute;right:-180px;top:-140px;width:660px;height:660px;pointer-events:none}
+.hero-rings i{position:absolute;inset:0;border:1px solid var(--ink3);border-radius:50%}
+.hero-rings i:nth-child(2){inset:75px}.hero-rings i:nth-child(3){inset:150px}
+.hero-rings b{position:absolute;top:50%;left:50%;width:18px;height:18px;background:var(--red);border-radius:50%;transform:translate(-50%,-50%)}
+.hero h1{font-family:var(--disp);font-weight:900;font-size:clamp(40px,7.6vw,90px);line-height:.98;letter-spacing:-.035em;max-width:940px;position:relative}
+.hero h1 .r{color:var(--red)}
+.hero .sub{margin-top:24px;max-width:620px;color:#C6CBD4;font-size:clamp(16px,2vw,19px);line-height:1.62}
+.hero .sub b{color:#fff;font-weight:600}
+.hero-cta{display:flex;gap:13px;margin-top:32px;flex-wrap:wrap}
+.arrw{font-size:14px;opacity:.75;transition:transform .18s}
+.btn:hover .arrw{transform:translateY(2px);opacity:1}
+.hero-skip{display:inline-flex;align-items:center;margin-top:18px;font-size:13.5px;color:var(--grey);border-bottom:1px solid var(--line-d);padding-bottom:3px;transition:color .15s,border-color .15s}
+.hero-skip:hover{color:#fff;border-color:var(--red)}
+.hero-meta{margin-top:40px;padding:20px 0;border-top:1px solid var(--line-d);display:flex;gap:30px;flex-wrap:wrap;color:var(--grey)}
+.hero-meta span{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em}
+.marquee{background:var(--red);color:#fff;overflow:hidden;white-space:nowrap;padding:12px 0}
+.mtrack{display:inline-block;animation:mq 30s linear infinite;font-family:var(--mono);font-size:12px;letter-spacing:.14em}
+.mtrack span{margin:0 22px}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+.claims{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:46px}
+.claim{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 24px;position:relative;overflow:hidden}
+.claim::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--red)}
+.claim h3{font-weight:700;font-size:19px;letter-spacing:-.015em;margin-bottom:9px}
+.claim p{color:var(--muted);font-size:14.3px}
+@media(max-width:880px){.claims{grid-template-columns:1fr}}
+.quote{background:var(--ink);color:#fff;border-radius:20px;padding:40px 38px;margin-top:20px;display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap}
+.quote b{font-family:var(--disp);font-weight:800;font-size:clamp(19px,2.5vw,26px);letter-spacing:-.02em;line-height:1.25;max-width:660px;display:block}
+.quote .mono{color:var(--grey)}
+
+.pains{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:42px}
+.pain{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px;display:flex;gap:14px;align-items:flex-start}
+.pain .q{font-family:var(--disp);font-weight:800;font-size:22px;color:var(--red);line-height:1;flex-shrink:0}
+.pain b{display:block;font-family:var(--disp);font-weight:700;font-size:16.5px;margin-bottom:5px;letter-spacing:-.01em}
+.pain p{color:var(--muted);font-size:14px}
+@media(max-width:840px){.pains{grid-template-columns:1fr}}
+
+/* HHH */
+.hhh{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
+.h3c{background:var(--ink2);border:1px solid var(--line-d);border-radius:18px;padding:28px 26px;position:relative}
+.h3c.mid{border-color:var(--red)}
+.h3c .lv{font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;color:var(--grey)}
+.h3c h3{font-weight:800;font-size:22px;color:#fff;margin:9px 0 4px;letter-spacing:-.02em}
+.h3c .sd{font-size:13px;color:var(--red);margin-bottom:13px}
+.h3c p{color:#B9BFC9;font-size:14px;line-height:1.6}
+.h3c .who{margin-top:16px;padding-top:14px;border-top:1px solid var(--line-d);font-size:12.8px;color:var(--grey)}
+.h3c .tagme{position:absolute;top:24px;right:22px;background:var(--red);color:#fff;font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;padding:4px 9px;border-radius:999px}
+@media(max-width:900px){.hhh{grid-template-columns:1fr}}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px}
+.stat{background:var(--ink2);border:1px solid var(--line-d);border-radius:16px;padding:24px 22px}
+.stat .n{font-family:var(--disp);font-weight:900;font-size:clamp(30px,4.4vw,42px);color:var(--red);letter-spacing:-.03em;line-height:1}
+.stat p{color:#B9BFC9;font-size:13.3px;margin-top:10px}
+.stat span{display:block;font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;color:var(--grey);margin-top:12px;padding-top:10px;border-top:1px solid var(--line-d)}
+@media(max-width:900px){.stats{grid-template-columns:1fr 1fr}}
+
+.vs{display:grid;grid-template-columns:1fr auto 1fr;margin-top:44px;align-items:stretch}
+.vs-col{background:var(--card);border:1px solid var(--line);padding:30px 28px}
+.vs-col:first-child{border-radius:18px 0 0 18px}
+.vs-col:last-child{border-radius:0 18px 18px 0;background:var(--ink);color:#fff;border-color:var(--ink)}
+.vs-mid{display:flex;align-items:center;justify-content:center;padding:0 6px}
+.vs-mid span{width:46px;height:46px;border-radius:50%;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-weight:800;font-size:13px}
+.vs-col h3{font-weight:800;font-size:21px;letter-spacing:-.02em;margin-bottom:4px}
+.vs-col .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--muted);margin-bottom:12px;display:block}
+.vs-col:last-child .lbl{color:var(--grey)}
+.vs-col ul{list-style:none;margin-top:14px}
+.vs-col li{padding:10px 0;border-top:1px solid var(--line);font-size:14.5px;display:flex;gap:10px}
+.vs-col:last-child li{border-color:var(--line-d);color:#DDE1E7}
+.vs-col li::before{content:"×";color:var(--muted);font-weight:700;flex-shrink:0}
+.vs-col:last-child li::before{content:"✓";color:var(--red)}
+@media(max-width:880px){.vs{grid-template-columns:1fr}.vs-col:first-child{border-radius:18px 18px 0 0}.vs-col:last-child{border-radius:0 0 18px 18px}.vs-mid{padding:14px 0}}
+
+.fmts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
+.fmt{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 24px;cursor:pointer;transition:border-color .16s,transform .16s}
+.fmt:hover{border-color:var(--ink);transform:translateY(-3px)}
+.fmt .en{font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;color:var(--red);display:block;margin-bottom:11px}
+.fmt h3{font-weight:800;font-size:19px;letter-spacing:-.015em;margin-bottom:8px}
+.fmt p{color:var(--muted);font-size:14px}
+.fmt .ex{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);font-size:13px;font-style:italic}
+@media(max-width:900px){.fmts{grid-template-columns:1fr}}
+
+/* accordion works */
+.acc{margin-top:34px;border:1px solid var(--line-d);border-radius:18px;overflow:hidden;background:var(--ink2)}
+.acc-head{padding:24px 28px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;gap:20px}
+.acc-head b{font-family:var(--disp);font-weight:800;font-size:19px;color:#fff;display:block}
+.acc-head p{color:var(--grey);font-size:13.8px;margin-top:5px}
+.acc-head .ic{width:38px;height:38px;border-radius:50%;border:1px solid var(--line-d);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-weight:700;font-size:19px;flex-shrink:0;transition:transform .25s,border-color .2s}
+.acc.open .acc-head .ic{transform:rotate(45deg);border-color:var(--red)}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .45s ease}
+.acc.open .acc-body{max-height:2400px}
+.acc-inner{padding:0 28px 28px}
+.tabs{display:flex;gap:9px;margin-bottom:20px;flex-wrap:wrap}
+.tab{border:1px solid var(--line-d);background:transparent;color:var(--grey);border-radius:999px;padding:9px 17px;font-family:var(--body);font-size:13.5px;font-weight:600;cursor:pointer;transition:all .15s}
+.tab:hover{color:#fff;border-color:var(--grey)}
+.tab.on{background:var(--red);border-color:var(--red);color:#fff}
+.works{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.work{background:var(--ink);border:1px solid var(--line-d);border-radius:16px;overflow:hidden;cursor:pointer;transition:transform .16s,border-color .16s}
+.work:hover{transform:translateY(-4px);border-color:#3A404E}
+.work .thumb{aspect-ratio:9/11;background:linear-gradient(160deg,#242833,#14161C);display:flex;align-items:center;justify-content:center;position:relative;border-bottom:1px solid var(--line-d)}
+.work .thumb .play{width:50px;height:50px;border-radius:50%;border:1.5px solid var(--grey);display:flex;align-items:center;justify-content:center;color:#fff}
+.work .thumb .tg{position:absolute;top:14px;left:14px;font-family:var(--mono);font-size:9px;letter-spacing:.11em;color:var(--grey);border:1px solid var(--line-d);padding:5px 9px;border-radius:999px}
+.work .meta{padding:18px 20px}
+.work h3{font-weight:700;font-size:17px;color:#fff}
+.work p{color:var(--grey);font-size:13.2px;margin-top:6px}
+.work .st{margin-top:12px;padding-top:11px;border-top:1px solid var(--line-d);font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;color:var(--red)}
+@media(max-width:900px){.works{grid-template-columns:1fr}}
+
+.rail{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:44px}
+.poster{background:var(--ink2);border:1px solid var(--line-d);border-radius:18px;display:flex;flex-direction:column;transition:transform .18s,border-color .18s}
+.poster:hover{transform:translateY(-5px);border-color:#3A404E}
+.poster.hot{border-color:var(--red)}
+.poster-top{padding:23px 21px 17px;border-bottom:1px solid var(--line-d);position:relative}
+.poster-top .mono{color:var(--grey);font-size:9.5px}
+.poster h3{font-weight:800;font-size:19.5px;letter-spacing:-.02em;margin-top:7px;color:#fff}
+.poster .price{margin-top:11px;font-family:var(--disp);font-weight:800;font-size:25px;color:#fff}
+.poster .price small{font-family:var(--body);font-weight:400;font-size:12px;color:var(--grey);margin-left:5px}
+.badge{position:absolute;top:17px;right:15px;background:var(--red);color:#fff;font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;padding:4px 9px;border-radius:999px}
+.poster-body{padding:17px 21px 21px;flex:1;display:flex;flex-direction:column}
+.poster-body .li{padding:8px 0;border-bottom:1px solid var(--line-d);font-size:13.2px;color:#D5D9E0;display:flex;gap:9px}
+.poster-body .li:last-of-type{border-bottom:none}
+.poster-body .li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--red);flex-shrink:0;margin-top:7px}
+.poster .more{margin-top:auto;padding-top:15px}
+.poster .more button{width:100%;background:transparent;border:1px solid var(--line-d);color:#fff;border-radius:10px;padding:11px;font-family:var(--body);font-weight:600;font-size:13.5px;cursor:pointer;transition:all .15s}
+.poster .more button:hover{border-color:var(--red);background:rgba(229,72,77,.09)}
+@media(max-width:1040px){.rail{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.rail{grid-template-columns:1fr}}
+
+.tava{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:42px}
+.tcard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px 22px;display:flex;flex-direction:column}
+.tcard.hi{border-color:var(--ink);border-width:1.5px;position:relative}
+.tcard .flag{position:absolute;top:-11px;left:22px;background:var(--ink);color:#fff;font-family:var(--mono);font-size:9px;letter-spacing:.12em;padding:5px 11px;border-radius:999px}
+.tcard h3{font-weight:800;font-size:18px}
+.tcard .p{font-family:var(--disp);font-weight:800;font-size:26px;margin:9px 0 3px}
+.tcard .p small{font-family:var(--body);font-weight:400;font-size:12.5px;color:var(--muted)}
+.tcard .q{color:var(--red);font-weight:600;font-size:13px;margin-bottom:13px}
+.tcard .li{padding:7px 0;border-top:1px dashed var(--line);font-size:13.2px;display:flex;gap:9px}
+.tcard .li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--red);flex-shrink:0;margin-top:7px}
+.tcard button{margin-top:15px;background:transparent;border:1px solid var(--line);border-radius:10px;padding:11px;font-family:var(--body);font-weight:600;font-size:13.3px;cursor:pointer;transition:border-color .15s}
+.tcard button:hover{border-color:var(--ink)}
+@media(max-width:1040px){.tava{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.tava{grid-template-columns:1fr}}
+
+.layers{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:42px}
+.layer{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px 26px;display:flex;flex-direction:column}
+.layer .mono{color:var(--red)}
+.layer h3{font-weight:800;font-size:22px;margin:9px 0 10px;letter-spacing:-.02em}
+.layer p{color:var(--muted);font-size:14px;flex:1}
+.layer .p{font-family:var(--disp);font-weight:800;font-size:21px;border-top:1px solid var(--line);padding-top:15px;margin-top:18px}
+.layer .p small{font-family:var(--body);font-weight:400;font-size:12.5px;color:var(--muted)}
+.layer button{margin-top:14px;background:transparent;border:1px solid var(--line);border-radius:10px;padding:11px;font-family:var(--body);font-weight:600;font-size:13.3px;cursor:pointer;transition:border-color .15s}
+.layer button:hover{border-color:var(--ink)}
+@media(max-width:880px){.layers{grid-template-columns:1fr}}
+.disclaim{margin-top:20px;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--red);border-radius:14px;padding:22px 24px}
+.scarce-line{margin-top:26px;background:var(--red-soft);border:1px solid #F3C1C3;border-radius:12px;padding:15px 20px;font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;color:var(--red);text-align:center}
+.disclaim b{display:block;font-family:var(--disp);font-weight:800;font-size:16.5px;margin-bottom:8px}
+.disclaim p{font-size:14.3px;color:var(--muted)}
+
+.posts{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
+.post{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 24px;cursor:pointer;transition:border-color .16s,transform .16s}
+.post:hover{border-color:var(--ink);transform:translateY(-3px)}
+.post .cat{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;color:var(--red)}
+.post h3{font-weight:700;font-size:18px;letter-spacing:-.015em;margin:10px 0 9px;line-height:1.25}
+.post p{color:var(--muted);font-size:13.8px}
+.post .rd{margin-top:14px;font-size:12.5px;font-weight:600}
+@media(max-width:900px){.posts{grid-template-columns:1fr}}
+
+/* PLAN BIG */
+.planbig{background:var(--ink);color:#fff;border-radius:24px;padding:52px 46px;position:relative;overflow:hidden}
+.planbig .rings{position:absolute;right:-120px;top:-120px;width:420px;height:420px;pointer-events:none}
+.planbig .rings i{position:absolute;inset:0;border:1px solid var(--ink3);border-radius:50%}
+.planbig .rings i:nth-child(2){inset:60px}.planbig .rings i:nth-child(3){inset:120px}
+.planbig-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:40px;align-items:center;position:relative}
+.planbig h3{font-weight:900;font-size:clamp(26px,3.6vw,40px);letter-spacing:-.03em;line-height:1.06}
+.planbig h3 .r{color:var(--red)}
+.planbig p{color:#C6CBD4;margin-top:16px;font-size:16px;line-height:1.6}
+.pb-steps{margin-top:24px;display:flex;flex-direction:column;gap:10px}
+.pb-step{display:flex;gap:13px;align-items:flex-start;font-size:14.3px;color:#DDE1E7}
+.pb-step .n{width:24px;height:24px;border-radius:50%;background:var(--red);color:#fff;font-family:var(--mono);font-size:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.pb-box{background:var(--ink2);border:1px solid var(--line-d);border-radius:18px;padding:30px 28px}
+.pb-box .mono{color:var(--red)}
+.pb-box b{display:block;font-family:var(--disp);font-weight:800;font-size:20px;margin:9px 0 15px}
+.pb-box .li{font-size:13.8px;color:#D5D9E0;padding:8px 0;border-top:1px solid var(--line-d);display:flex;gap:9px}
+.pb-box .li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--red);flex-shrink:0;margin-top:7px}
+@media(max-width:900px){.planbig{padding:34px 24px}.planbig-grid{grid-template-columns:1fr;gap:28px}}
+
+details{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-top:11px;overflow:hidden}
+summary{cursor:pointer;padding:19px 24px;font-weight:600;font-size:15.5px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:var(--disp);font-weight:700;color:var(--red);font-size:20px;transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{padding:0 24px 20px;color:var(--muted);font-size:14.5px;line-height:1.65}
+
+/* BOOK BIG */
+.bookbig{background:var(--card);border:1px solid var(--line);border-radius:24px;overflow:hidden;margin-top:42px;display:grid;grid-template-columns:1fr 1.15fr}
+.bb-left{background:var(--ink);color:#fff;padding:44px 38px}
+.bb-left .mono{color:var(--red)}
+.bb-left h3{font-weight:900;font-size:clamp(24px,3.2vw,34px);letter-spacing:-.028em;margin:10px 0 16px;line-height:1.08}
+.bb-left p{color:#C6CBD4;font-size:15px}
+.bb-list{margin-top:24px}
+.bb-list .li{font-size:14px;color:#DDE1E7;padding:9px 0;border-top:1px solid var(--line-d);display:flex;gap:10px}
+.bb-list .li::before{content:"✓";color:var(--red);flex-shrink:0;font-weight:700}
+.bb-right{padding:40px 38px}
+.bb-right h4{font-family:var(--disp);font-weight:800;font-size:19px;margin-bottom:5px}
+.bb-right .hint{color:var(--muted);font-size:13.5px;margin-bottom:20px}
+.daybar{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:12px}
+.day{border:1px solid var(--line);border-radius:10px;padding:11px 4px;text-align:center;cursor:pointer;background:#FBFBFD;transition:all .15s}
+.day:hover{border-color:var(--ink)}
+.day.sel{border-color:var(--red);background:var(--red-soft)}
+.day b{display:block;font-family:var(--disp);font-weight:700;font-size:14px}
+.day span{font-size:10.5px;color:var(--muted);font-family:var(--mono)}
+.times{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:20px}
+.time{border:1px solid var(--line);border-radius:9px;padding:10px 4px;text-align:center;cursor:pointer;background:#FBFBFD;font-size:13.5px;font-weight:600;transition:all .15s}
+.time:hover{border-color:var(--ink)}
+.time.sel{border-color:var(--red);background:var(--red-soft);color:var(--red)}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.field{margin-bottom:10px}
+.field input,.field select,.field textarea{width:100%;padding:12px 13px;border:1px solid var(--line);border-radius:10px;font:inherit;font-size:14.3px;background:#FBFBFD;font-family:var(--body)}
+.field textarea{min-height:70px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:2px solid var(--ink);outline-offset:1px;border-color:transparent}
+.fine{font-size:12px;color:var(--muted);margin-top:11px;text-align:center}
+.switch{display:flex;gap:8px;margin-bottom:20px}
+.sw{flex:1;border:1px solid var(--line);border-radius:10px;padding:11px;text-align:center;cursor:pointer;font-size:13.5px;font-weight:600;background:#FBFBFD;transition:all .15s}
+.sw.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+@media(max-width:940px){.bookbig{grid-template-columns:1fr}.bb-left,.bb-right{padding:32px 24px}}
+
+.cta-foot{background:var(--ink);color:#fff;padding:100px 0 84px;text-align:center}
+.cta-foot h2{font-size:clamp(32px,5.2vw,56px);max-width:880px;margin:0 auto}
+.cta-foot h2 .r{color:var(--red)}
+.cta-foot p{margin:22px auto 0;max-width:560px;color:#B9BFC9;font-size:16.5px}
+.cta-row{display:flex;gap:13px;justify-content:center;margin-top:34px;flex-wrap:wrap}
+.cta-foot .fine2{margin-top:48px;color:var(--grey);font-family:var(--mono);font-size:10.5px;letter-spacing:.12em}
+footer{background:var(--ink);border-top:1px solid var(--line-d);color:var(--grey);padding:26px 0;font-size:13px}
+.foot-in{max-width:1140px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+.overlay{position:fixed;inset:0;background:rgba(10,11,15,.74);backdrop-filter:blur(6px);z-index:100;display:none;align-items:flex-start;justify-content:center;padding:40px 20px;overflow-y:auto}
+.overlay.open{display:flex}
+.modal{background:var(--paper);border-radius:22px;max-width:860px;width:100%;overflow:hidden;animation:pop .28s ease}
+@keyframes pop{from{opacity:0;transform:translateY(20px) scale(.98)}to{opacity:1;transform:none}}
+.modal-head{background:var(--ink);color:#fff;padding:32px 34px 28px;position:relative}
+.modal-head .mono{color:var(--grey)}
+.modal-head h3{font-weight:900;font-size:clamp(23px,3.4vw,33px);letter-spacing:-.025em;margin-top:8px}
+.modal-head .price{margin-top:13px;font-family:var(--disp);font-weight:800;font-size:25px}
+.modal-head .price small{font-family:var(--body);font-weight:400;font-size:13px;color:var(--grey);margin-left:6px}
+.modal-close{position:absolute;top:22px;right:24px;width:36px;height:36px;border-radius:50%;border:1px solid var(--line-d);background:transparent;color:#fff;font-size:19px;cursor:pointer;line-height:1}
+.modal-close:hover{border-color:var(--red)}
+.modal-body{padding:30px 34px 34px}
+.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.mgrid h4{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;color:var(--red);margin-bottom:12px}
+.mgrid .li{font-size:14px;padding:8px 0;border-top:1px solid var(--line);display:flex;gap:9px}
+.mgrid .li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--red);flex-shrink:0;margin-top:7px}
+.modal-note{margin-top:22px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;font-size:13.8px;color:var(--muted)}
+.modal-note b{color:var(--ink)}
+.modal-cta{margin-top:20px;display:flex;gap:11px;flex-wrap:wrap}
+@media(max-width:760px){.mgrid{grid-template-columns:1fr}.modal-body{padding:24px 22px 28px}.modal-head{padding:26px 22px 22px}}
+
+.pbar{height:4px;background:var(--line-d);border-radius:2px;margin-top:18px;overflow:hidden}
+.pbar i{display:block;height:100%;background:var(--red);width:25%;transition:width .4s ease}
+.cstep{display:none}.cstep.on{display:block}
+.cq{margin-bottom:22px}
+.cq h4{font-family:var(--body);font-weight:600;font-size:15.5px;margin-bottom:11px}
+.cq .sm{font-size:13px;color:var(--muted);margin:-6px 0 10px}
+.copt{display:flex;flex-direction:column;gap:8px}
+.copt.row{flex-direction:row;flex-wrap:wrap}
+.copt label{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);background:var(--card);border-radius:10px;padding:12px 14px;cursor:pointer;font-size:14.2px;transition:all .15s}
+.copt.row label{flex:0 0 auto}
+.copt label:hover{border-color:#B9C0CC}
+.copt label.on{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
+.copt input{accent-color:var(--red);margin-top:3px;width:16px;height:16px;flex-shrink:0}
+.cres{background:var(--ink);color:#fff;border-radius:16px;padding:28px 26px;margin-bottom:18px}
+.cres .mono{color:var(--grey)}
+.cres b{display:block;font-family:var(--disp);font-weight:900;font-size:27px;letter-spacing:-.02em;margin:8px 0 6px}
+.cres .pr{font-family:var(--mono);font-size:15px}
+.cres p{color:#C6CBD4;font-size:14.3px;margin-top:14px}
+.cwhy .li{font-size:14px;padding:9px 0;border-top:1px dashed var(--line);display:flex;gap:9px}
+.cwhy .li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--red);flex-shrink:0;margin-top:7px}
+.consult{margin-top:18px;padding-top:16px;border-top:1px dashed var(--line);font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:9px;cursor:pointer}
+.consult input{accent-color:var(--red)}
+#notesWrap{display:none;margin-top:12px}
+body.cmode #notesWrap{display:block}
+</style>
+<style>
+/* --- dynamic layer (Arsenal-style) --- */
+#ttProg{position:fixed;top:0;left:0;height:3px;background:var(--red);width:0;z-index:200}
+.ttgrain{position:fixed;inset:-100px;z-index:120;pointer-events:none;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:ttgrain 8s steps(10) infinite}
+@keyframes ttgrain{0%,100%{transform:translate(0,0)}10%{transform:translate(-3%,-6%)}30%{transform:translate(4%,2%)}50%{transform:translate(-4%,7%)}70%{transform:translate(6%,-3%)}90%{transform:translate(-2%,4%)}}
+.ttcur,.ttcur2{position:fixed;top:0;left:0;pointer-events:none;z-index:300;border-radius:50%;display:none}
+.ttcur{width:8px;height:8px;background:var(--red);transform:translate(-50%,-50%)}
+.ttcur2{width:38px;height:38px;border:1.5px solid rgba(229,72,77,.55);transform:translate(-50%,-50%);transition:width .22s,height .22s,border-color .22s,background .22s}
+.ttcur2.big{width:74px;height:74px;border-color:rgba(229,72,77,.9);background:rgba(229,72,77,.08)}
+.ttcur2 span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:8px;letter-spacing:.12em;color:#fff;opacity:0;transition:opacity .2s}
+.ttcur2.big span{opacity:1}
+@media(pointer:fine){.ttcur,.ttcur2{display:block}}
+.tt-hud{position:absolute;top:86px;left:24px;right:24px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--grey);z-index:2;pointer-events:none}
+.tt-hud .rec b{color:var(--red);animation:pulse 1.2s infinite;font-weight:400}
+.tt-hud .rec{color:#fff}
+.n .ct{font-style:normal}
+/* language switcher */
+.lang{display:flex;align-items:center;gap:7px;font-family:var(--mono);font-size:11px;letter-spacing:.1em}
+.lang span,.lang a{color:var(--grey);transition:color .15s;padding:2px 0}
+.lang .on{color:#fff}
+.lang a:hover{color:var(--red)}
+.lang .sep{opacity:.4}
+.mnav .lang{padding:14px 0}
+@media (prefers-reduced-motion:reduce){.ttgrain{animation:none}}
+</style>
+</head>
+<body>
+<div id="ttProg"></div>
+<div class="ttgrain" aria-hidden="true"></div>
+<div class="ttcur" aria-hidden="true"></div>
+<div class="ttcur2" aria-hidden="true"><span id="ttCurLbl">VIEW</span></div>
+
+<nav>
+  <div class="nav-in">
+    <a class="logo" href="#top"><span class="rec pulse"></span><span><b>TAGATUBA</b><em>BEHIND THE SCENES STUDIO</em></span></a>
+    <div class="nav-links">
+      <a href="#miks">Why series</a>
+      <a href="#koht">Where it fits</a>
+      <a href="#formaadid">Formats</a>
+      <a href="#sarjad">Pricing</a>
+      <a href="#" onclick="openCalc();return false" class="btn btn-out btn-sm" style="color:#fff;border-color:var(--line-d)">Get your plan</a>
+      <div class="lang"><a href="tagatuba.html" aria-label="Eesti keeles">ET</a><span class="sep">/</span><span class="on">EN</span></div>
+      <a href="#broneeri" class="btn btn-red btn-sm">Let’s talk</a>
+      <button class="burger" id="burger" aria-label="Menüü" onclick="toggleNav()"><i></i><i></i><i></i></button>
+    </div>
+  </div>
+</nav>
+<div class="mnav" id="mnav">
+  <a href="#miks" onclick="toggleNav()">Why series</a>
+  <a href="#koht" onclick="toggleNav()">Where it fits</a>
+  <a href="#formaadid" onclick="toggleNav()">Formats</a>
+  <a href="#tood" onclick="toggleNav()">Work & team</a>
+  <a href="#sarjad" onclick="toggleNav()">Pricing</a>
+  <a href="#kkk" onclick="toggleNav()">FAQ</a>
+  <a href="tagatuba.html">ET · Eesti keeles</a>
+  <a href="#" class="btn btn-red" onclick="toggleNav();openCalc();return false">Get your plan</a>
+</div>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-rings" aria-hidden="true"><i></i><i></i><i></i><b></b></div>
+  <div class="tt-hud" aria-hidden="true"><span class="rec"><b>●</b> REC</span><span id="ttTc">TC 00:00:00:00</span></div>
+  <div class="wrap">
+    <div class="mono" style="color:var(--grey);margin-bottom:20px"><span class="dot pulse"></span>A VIDEO STUDIO THAT MAKES SERIES</div>
+    <h1>People don’t watch ads anymore.<br><span class="r">They watch backrooms.</span></h1>
+    <p class="sub"><b>A backroom is where things actually happen.</b> Where the work gets done, jokes get cracked, problems get solved and sometimes it all goes sideways. We turn your backroom into a series your clients wait for. And then we turn that anticipation into sales.</p>
+    <div class="hero-cta">
+      <a href="#miks" class="btn btn-red js-scroll">Why does a series work? <span class="arrw">↓</span></a>
+      <a href="#valu" class="btn btn-ghost-d js-scroll">Is this for me? <span class="arrw">↓</span></a>
+    </div>
+    <a href="#" class="hero-skip" onclick="openCalc();return false">I already know what I want &nbsp;→&nbsp; get your plan in 4 minutes</a>
+    <div class="hero-meta">
+      <span>1 SEASON = 12 EPISODES = 3 MONTHS</span>
+      <span>A NEW EPISODE EVERY WEEK</span>
+      <span>ONE SHOOT DAY A MONTH</span>
+    </div>
+  </div>
+  <div class="marquee" aria-hidden="true">
+    <div class="mtrack">
+      <span>EP 01 · WHAT REALLY GOES ON HERE</span><span>EP 02 · THE WORST MOMENT OF THE WEEK</span><span>EP 03 · NEW GUY VS OLD HAND</span><span>EP 04 · THE CLIENT SAID…</span><span>EP 05 · WHAT WE NEVER DO</span><span>EP 06 · SEASON FINALE</span>
+      <span>EP 01 · WHAT REALLY GOES ON HERE</span><span>EP 02 · THE WORST MOMENT OF THE WEEK</span><span>EP 03 · NEW GUY VS OLD HAND</span><span>EP 04 · THE CLIENT SAID…</span><span>EP 05 · WHAT WE NEVER DO</span><span>EP 06 · SEASON FINALE</span>
+    </div>
+  </div>
+</header>
+
+<!-- MIKS SEE TÖÖTAB -->
+<section id="miks">
+  <div class="wrap">
+    <div class="eyeb rv"><span class="dot"></span><span class="mono">Why it works</span></div>
+    <h2 class="rv">Trust isn’t bought.<br>It’s built one week at a time.</h2>
+    <p class="sec-sub rv">Nobody buys off the first video. But when the same person sees you for the third week running, they’ve stopped sizing you up and started knowing you. A series is the machine that produces that repetition, without you paying for attention from scratch every time.</p>
+
+    <div class="claims">
+      <div class="claim rv"><h3>Anticipation is the new currency</h3><p>An ordinary post fights for attention for a second and a half. People come asking for the next episode of a series. And a returning viewer is far more likely to buy than a random scroller.</p></div>
+      <div class="claim rv"><h3>The platforms push it</h3><p>In 2026 TikTok and Meta rolled out dedicated series features and reward episodic content. The algorithm measures whether a viewer comes back, and a series gives it exactly that signal.</p></div>
+      <div class="claim rv"><h3>A character can’t be copied</h3><p>Your competitor can copy your post by tomorrow. Your craftsman, your team and the inside jokes between you, those they can’t copy. Ever.</p></div>
+    </div>
+
+    <div class="quote rv">
+      <b>The episode warms the audience up. The offer collects the sale. Neither works half as well alone as they do together.</b>
+      <span class="mono">SERIES + SALES WINDOWS</span>
+    </div>
+  </div>
+</section>
+
+<!-- VS -->
+<section style="padding-top:20px">
+  <div class="wrap">
+    <div class="eyeb rv"><span class="dot"></span><span class="mono">The most important question</span></div>
+    <h2 class="rv">Why a series, not just more reels?</h2>
+    <p class="sec-sub rv">Because one reel competes with the whole world for a second and a half. A series builds an audience that comes back on its own. You can get reels from us too. But a series is what gets you remembered.</p>
+    <div class="vs rv">
+      <div class="vs-col">
+        <span class="lbl">AN ORDINARY POST</span><h3>A single video</h3>
+        <ul><li>Lives for 24 hours, then it’s gone</li><li>Every time you fight for attention from zero</li><li>The viewer doesn’t know who you are</li><li>A competitor copies the format in a week</li><li>Good numbers are a matter of luck</li></ul>
+      </div>
+      <div class="vs-mid"><span>VS</span></div>
+      <div class="vs-col">
+        <span class="lbl">YOUR SERIES</span><h3>12 episodes, one story</h3>
+        <ul><li>Each episode brings the last one’s audience back</li><li>The viewer is already waiting for the next one</li><li>They know your people by name</li><li>Nobody can copy your characters</li><li>Growth is a system, not luck</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HHH -->
+<section class="dark" id="koht">
+  <div class="wrap">
+    <div class="eyeb rv"><span class="dot pulse"></span><span class="mono">Where a series sits in your marketing</span></div>
+    <h2 class="rv">The big ad isn’t dead.<br><span style="color:var(--red)">It just has its place.</span></h2>
+    <p class="sec-sub rv">Google and YouTube set this model years ago and it still holds. Marketing that works has three layers, and most companies are missing the middle one entirely. That’s exactly where we work.</p>
+
+    <div class="hhh">
+      <div class="h3c rv">
+        <span class="lv">LEVEL 1 · HERO</span>
+        <h3>The big story</h3>
+        <div class="sd">1 to 2 times a year</div>
+        <p>An expensive, cinematic ad. A brand campaign, a product launch, big emotion. <a href="arsenal-en.html" style="color:#fff;text-decoration:underline">Arsenal Production House</a> makes this, and every brand that wants to be taken seriously needs it.</p>
+        <div class="who">High budget, big impact, rare</div>
+      </div>
+      <div class="h3c mid rv">
+        <span class="tagme">OUR JOB</span>
+        <span class="lv">LEVEL 2 · HUB</span>
+        <h3>Your series</h3>
+        <div class="sd">Every week, all year</div>
+        <p>This is where the relationship is built. Recurring content the audience comes back to. It’s the layer that keeps your brand alive the eleven months a year the big ad isn’t running. Most companies are missing it.</p>
+        <div class="who">Moderate cost, constant impact, every week</div>
+      </div>
+      <div class="h3c rv">
+        <span class="lv">LEVEL 3 · HYGIENE</span>
+        <h3>Answers</h3>
+        <div class="sd">Always there</div>
+        <p>Content that answers the questions clients ask anyway. How something works, what it costs, how to start. It works in the background even while you sleep.</p>
+        <div class="who">Low cost, slow and steady impact</div>
+      </div>
+    </div>
+
+    <p class="sec-sub rv" style="margin-top:26px;max-width:760px">One big ad a year won’t build a brand people follow. And short videos alone won’t build a brand taken seriously. You need both, but in the right order: get the middle layer running first, then the big story on top.</p>
+
+    <div class="stats">
+      <div class="stat rv"><div class="n"><em class="ct" data-count="78" data-suf="%">0</em></div><p>say a brand’s backroom content makes them feel more connected to it</p><span>BRAND AUTHENTICITY STATS 2026</span></div>
+      <div class="stat rv"><div class="n"><em class="ct" data-count="64" data-suf="%">0</em></div><p>trust a brand more when it shows its employees on social media</p><span>BRAND AUTHENTICITY STATS 2026</span></div>
+      <div class="stat rv"><div class="n"><em class="ct" data-count="52" data-suf="%">0</em></div><p>lose interest the moment they suspect content was made with AI</p><span>CONTENT MARKETING TRENDS 2026</span></div>
+      <div class="stat rv"><div class="n"><em class="ct" data-count="2.2" data-dec="1" data-suf="%">0</em></div><p>is Facebook’s organic reach. Without good content almost nobody sees you</p><span>SENDIBLE SOCIAL TRENDS 2026</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- KELLELE -->
+<section id="valu">
+  <div class="wrap">
+    <div class="eyeb rv"><span class="dot"></span><span class="mono">Who it’s for</span></div>
+    <h2 class="rv">Does any of this sound familiar?</h2>
+    <p class="sec-sub rv">If you said yes to even one, you’re in the right place. These are exactly the worries business owners call us about.</p>
+    <div class="pains">
+      <div class="pain rv"><span class="q">?</span><div><b>You do it yourself, but there’s no time</b><p>You post whenever it happens to cross your mind. Two weeks pass, then one more photo. Nothing grows that way and you know it.</p></div></div>
+      <div class="pain rv"><span class="q">?</span><div><b>You post, but nothing happens</b><p>The content goes up, a couple of likes come in and that’s it. Not a single post has brought a call or an inquiry.</p></div></div>
+      <div class="pain rv"><span class="q">?</span><div><b>The competitor is everywhere you look</b><p>They’re everywhere, you’re nowhere. And you know your service is better, but nobody gets to see it.</p></div></div>
+      <div class="pain rv"><span class="q">?</span><div><b>You pay for ads, but the ROI is a fog</b><p>Money goes out, clicks come in, sales not so much. Nobody can tell you what actually came back from it.</p></div></div>
+      <div class="pain rv"><span class="q">?</span><div><b>You’ve tried an agency and were let down</b><p>You got ten pretty pictures a month and an invoice. The content was generic, could have been anyone’s.</p></div></div>
+      <div class="pain rv"><span class="q">?</span><div><b>You don’t know what to film in the first place</b><p>The camera is there, the ideas aren’t. And a feeling that there’s nothing in your business interesting enough to film.</p></div></div>
+    </div>
+    <div class="quote rv" style="margin-top:26px">
+      <b>If you said yes to even one, we know exactly what to do about it.</b>
+      <a href="#" onclick="openCalc();return false" class="btn btn-red">Get your plan</a>
+    </div>
+  </div>
+</section>
+
+<!-- FORMAADID -->
+<section id="formaadid" style="padding-top:20px">
+  <div class="wrap">
+    <div class="eyeb rv"><span class="dot"></span><span class="mono">Formats</span></div>
+    <h2 class="rv">Six ways to make your backroom sell</h2>
+    <p class="sec-sub rv">These are content formats proven around the world that work best right now. Your series is built from one or two of them, whichever fits your business and your people. Click to take a closer look.</p>
+    <div class="fmts">
+      <div class="fmt rv" onclick="openM('f1')"><span class="en">BEHIND THE SCENES</span><h3>Backroom</h3><p>How things actually get made. The camera goes where a client would otherwise never end up.</p><div class="ex">"Let’s see what rolled into bay number three today"</div></div>
+      <div class="fmt rv" onclick="openM('f2')"><span class="en">BUILD IN PUBLIC</span><h3>The honest road</h3><p>The struggles, the mistakes and how you got out of them. The most trustworthy content there is.</p><div class="ex">"We lost four thousand euros this month. I’ll tell you honestly why"</div></div>
+      <div class="fmt rv" onclick="openM('f3')"><span class="en">EDUTAINMENT</span><h3>We teach it</h3><p>How something works or how to do it yourself. You teach and entertain at once.</p><div class="ex">"Three things you’re doing wrong with your car"</div></div>
+      <div class="fmt rv" onclick="openM('f4')"><span class="en">SKETCH COMEDY</span><h3>The comedy zone</h3><p>Short sketches from your own world. The most shareable format there is.</p><div class="ex">"Clients every builder has met"</div></div>
+      <div class="fmt rv" onclick="openM('f5')"><span class="en">FOUNDER-LED / EGC</span><h3>People up front</h3><p>The owner or the staff speak for themselves. A brand with a face beats a faceless one every time.</p><div class="ex">"Fifteen years in this business and here’s what I’ve learned"</div></div>
+      <div class="fmt rv" onclick="openM('f6')"><span class="en">DOCU-STYLE</span><h3>The client journey</h3><p>One real client, one real problem, one real solution. Documentary logic.</p><div class="ex">"Marek came to us in August. See what happened next"</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TÖÖD (accordion) + ARSENAL -->
+<section class="dark" id="tood">
+  <div class="wrap">
+    <div class="eyeb rv"><span class="dot pulse"></span><span class="mono">About us and our work</span></div>
+    <h2 class="rv">We’re not a new player.<br>Only this branch is new.</h2>
+    <p class="sec-sub rv">We’re Arsenal Production House. We make ads, music videos and big productions with actors, makeup and a full crew. But not everyone needs that, and not every month. Tagatuba is our branch for those who need content every week, not one expensive video a year.</p>
+
+    <div class="acc rv" id="acc1">
+      <div class="acc-head" onclick="toggleAcc('acc1')">
+        <div><b>See our work</b><p>Series and client work by field</p></div>
+        <span class="ic">+</span>
+      </div>
+      <div class="acc-body"><div class="acc-inner">
+        <div class="tabs">
+          <button class="tab on" onclick="filt(this,'all')">All</button>
+          <button class="tab" onclick="filt(this,'maj')">Hospitality & tourism</button>
+          <button class="tab" onclick="filt(this,'eh')">Construction</button>
+          <button class="tab" onclick="filt(this,'teenus')">Services</button>
+        </div>
+        <div class="works" id="worksGrid">
+          <div class="work" data-cat="maj" onclick="openM('w1')"><div class="thumb"><span class="tg">SEASON 1</span><span class="play">▶</span></div><div class="meta"><h3>Nights at Rooslepa</h3><p>From the cleaner’s point of view. What guests leave behind and what really happens here at night.</p><div class="st">● 12 EPISODES · BACKROOM + COMEDY</div></div></div>
+          <div class="work" data-cat="eh" onclick="openM('w2')"><div class="thumb"><span class="tg">SEASON 1</span><span class="play">▶</span></div><div class="meta"><h3>Jack builds</h3><p>One man, one house and an endless run of problems that somehow always get solved.</p><div class="st">● 12 EPISODES · HONEST ROAD + BACKROOM</div></div></div>
+          <div class="work" data-cat="teenus" onclick="openM('w3')"><div class="thumb"><span class="tg">COMING</span><span class="play">▶</span></div><div class="meta"><h3>Your series here</h3><p>Let’s talk through what would make a series out of your business. The call is free.</p><div class="st">● OPEN SLOT</div></div></div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="acc rv" id="acc2" style="margin-top:14px">
+      <div class="acc-head" onclick="toggleAcc('acc2')">
+        <div><b>Meet the team</b><p>Who’s behind the camera and who writes your series</p></div>
+        <span class="ic">+</span>
+      </div>
+      <div class="acc-body"><div class="acc-inner">
+        <div class="works" style="grid-template-columns:repeat(2,1fr)">
+          <div style="background:var(--ink);border:1px solid var(--line-d);border-radius:16px;padding:26px 24px">
+            <span class="mono" style="color:var(--red)">CREATIVE</span>
+            <h3 style="color:#fff;font-weight:800;font-size:19px;margin:9px 0 12px">Director and writer</h3>
+            <p style="color:#B9BFC9;font-size:14px">Fifteen years in production. Responsible for making your series a story, not a pile of random videos. Writes the concept and every episode.</p>
+          </div>
+          <div style="background:var(--ink);border:1px solid var(--line-d);border-radius:16px;padding:26px 24px">
+            <span class="mono" style="color:var(--red)">PRODUCTION</span>
+            <h3 style="color:#fff;font-weight:800;font-size:19px;margin:9px 0 12px">Operators and editors</h3>
+            <p style="color:#B9BFC9;font-size:14px">The crew that shoots and edits your episodes every month. They can work with a phone or a big camera, because the format is chosen by the content, not the gear.</p>
+          </div>
+          <div style="background:var(--ink);border:1px solid var(--line-d);border-radius:16px;padding:26px 24px">
+            <span class="mono" style="color:var(--red)">CLIENT CONTACT</span>
+            <h3 style="color:#fff;font-weight:800;font-size:19px;margin:9px 0 12px">Your steady contact</h3>
+            <p style="color:#B9BFC9;font-size:14px">One person who answers your calls, presents the monthly report and keeps things moving. No rotating contact person, no unanswered emails.</p>
+          </div>
+          <div style="background:var(--ink);border:1px solid var(--line-d);border-radius:16px;padding:26px 24px">
+            <span class="mono" style="color:var(--red)">BIG PRODUCTION</span>
+            <h3 style="color:#fff;font-weight:800;font-size:19px;margin:9px 0 12px">Arsenal Production House</h3>
+            <p style="color:#B9BFC9;font-size:14px;margin-bottom:16px">When you need a big ad, actors, makeup and a full crew, that’s our parent house’s job. See what we’ve done.</p>
+            <a href="arsenal-en.html" class="btn btn-ghost-d btn-sm">Open Arsenal →</a>
+          </div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SARJAPAKETID -->
+<section id="sarjad">
+  <div class="wrap">
+    <div class="eyeb rv"><span class="dot"></span><span class="mono">Series packages · prices exclude VAT</span></div>
+    <h2 class="rv">Your brand. In the lead role.</h2>
+    <p class="sec-sub rv">Every series starts with a script. Before the first shoot we set the idea, the characters and every episode, and only then does the camera roll. The prices below are monthly and approximate. Click a package to see exactly what’s included.</p>
+
+    <div class="rail">
+      <div class="poster rv">
+        <div class="poster-top"><span class="mono">LET’S TEST IT</span><h3>SERIES Test</h3><div class="price">from €990<small>/ mo</small></div></div>
+        <div class="poster-body">
+          <div class="li">6 episodes total, 2 a month</div>
+          <div class="li">Half a shoot day a month, phone production</div>
+          <div class="li">Script and characters included</div>
+          <div class="li">3 months, then you decide</div>
+          <div class="more"><button onclick="openM('test')">Loe lähemalt</button></div>
+        </div>
+      </div>
+      <div class="poster hot rv">
+        <div class="poster-top"><span class="badge">RECOMMENDED</span><span class="mono">AUTHENTIC AND CLOSE</span><h3>SERIES Phone</h3><div class="price">from €1990<small>/ mo</small></div></div>
+        <div class="poster-body">
+          <div class="li">4 episodes a month, a new one every week</div>
+          <div class="li">1 shoot day a month, stories and photos included</div>
+          <div class="li">6 to 8 sales windows per season</div>
+          <div class="li">The right rhythm the viewer starts waiting for</div>
+          <div class="more"><button onclick="openM('telefon')">Loe lähemalt</button></div>
+        </div>
+      </div>
+      <div class="poster rv">
+        <div class="poster-top"><span class="mono">PROFESSIONAL PICTURE</span><h3>SERIES Camera</h3><div class="price">from €2990<small>/ mo</small></div></div>
+        <div class="poster-body">
+          <div class="li">4 episodes a month with camera production</div>
+          <div class="li">Light, sound, color grade</div>
+          <div class="li">6 to 8 sales windows per season</div>
+          <div class="li">A picture that sets you apart instantly</div>
+          <div class="more"><button onclick="openM('kaamera')">Loe lähemalt</button></div>
+        </div>
+      </div>
+      <div class="poster rv">
+        <div class="poster-top"><span class="mono">CUSTOM</span><h3>SERIES Production</h3><div class="price">from €4500<small>/ mo</small></div></div>
+        <div class="poster-body">
+          <div class="li">Actors, makeup and a full crew</div>
+          <div class="li">Multiple locations, graphics, effects</div>
+          <div class="li">Scope and lineup by agreement</div>
+          <div class="li">A custom quote for every project</div>
+          <div class="more"><button onclick="openM('produktsioon')">Loe lähemalt</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scarce-line rv">● WE TAKE ON A LIMITED NUMBER OF SERIES AT A TIME TO KEEP QUALITY UP. A FEW SLOTS ARE STILL OPEN.</div>
+  </div>
+</section>
+
+<!-- VIDEOPAKETID -->
+<section style="padding-top:20px">
+  <div class="wrap">
+    <div class="eyeb rv"><span class="dot"></span><span class="mono">Video packages · prices exclude VAT</span></div>
+    <h2 class="rv">If a series still feels like a big step</h2>
+    <p class="sec-sub rv">Not everyone wants a series right away, and that’s completely fine. We also make regular content: reels, product videos, campaign material and photos. Same team, same quality, a smaller step.</p>
+    <div class="tava">
+      <div class="tcard rv"><h3>START</h3><div class="p">from €690<small> / mo</small></div><div class="q">4 videos a month</div>
+        <div class="li">1 shoot day, up to 2 hours</div><div class="li">Ideas and scripts from us</div><div class="li">Edit, subtitles, all formats</div>
+        <button onclick="openM('start')">Loe lähemalt</button></div>
+      <div class="tcard hi rv"><span class="flag">MOST POPULAR</span><h3>GROWTH</h3><div class="p">from €1190<small> / mo</small></div><div class="q">8 videos a month</div>
+        <div class="li">1 to 2 shoot days</div><div class="li">Ideas and scripts from us</div><div class="li">Story material and photos included</div>
+        <button onclick="openM('kasv')">Loe lähemalt</button></div>
+      <div class="tcard rv"><h3>PRO</h3><div class="p">from €1790<small> / mo</small></div><div class="q">12 videos a month</div>
+        <div class="li">2 shoot days</div><div class="li">Ideas and scripts from us</div><div class="li">Photo session within the shoot day</div>
+        <button onclick="openM('pro')">Loe lähemalt</button></div>
+      <div class="tcard rv"><h3>CUSTOM</h3><div class="p">On request</div><div class="q">At your own volume</div>
+        <div class="li">Scope and formats to suit you</div><div class="li">One-off projects and campaigns</div><div class="li">A bigger production if needed</div>
+        <button onclick="openM('custom')">Loe lähemalt</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- KIHID -->
+<section style="padding-top:20px">
+  <div class="wrap">
+    <div class="eyeb rv"><span class="dot"></span><span class="mono">How the price is built · prices exclude VAT</span></div>
+    <h2 class="rv">Three layers. You pay only for what you need.</h2>
+    <p class="sec-sub rv">Content is the first layer and everyone buys it. The other two are optional: some clients post themselves and some don’t want to spend on ads yet. Click a layer to see exactly what’s in it.</p>
+    <div class="layers">
+      <div class="layer rv">
+        <span class="mono">LAYER 1</span><h3>Content</h3>
+        <p>Everything to do with making the video. Idea, script, shoot day, edit, subtitles and formats for every platform. This is the only layer you definitely need.</p>
+        <div class="p">from €690 <small>/ mo</small></div>
+        <button onclick="openM('k1')">Loe lähemalt</button>
+      </div>
+      <div class="layer rv">
+        <span class="mono">LAYER 2</span><h3>Management</h3>
+        <p>For when you don’t want to post yourself. We put content up on time, answer comments and messages and send a monthly report. The price depends on how many channels we run.</p>
+        <div class="p">from €390 <small>/ mo</small></div>
+        <button onclick="openM('k2')">Loe lähemalt</button>
+      </div>
+      <div class="layer rv">
+        <span class="mono">LAYER 3</span><h3>Amplification</h3>
+        <p>For when you want content to reach beyond your existing audience. Meta and TikTok campaigns. The ad spend goes straight to the platform from your own account, not to us.</p>
+        <div class="p">from €390 <small>/ mo + ad budget</small></div>
+        <button onclick="openM('k3')">Loe lähemalt</button>
+      </div>
+    </div>
+
+    <div class="disclaim rv">
+      <b>Why is every price “from”?</b>
+      <p>Because we honestly can’t say what your series will cost before we know what you want to do. One construction firm wants two people and a phone, another wants actors, a drone and three locations. Those are different things at different prices. The numbers on this page give you the right ballpark. The final price is set after the strategy call, once we know your goals, channels and the content you want. And then it’s locked for the whole season, with no surprises.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PLAAN -->
+<section style="padding-top:30px">
+  <div class="wrap">
+    <div class="planbig rv">
+      <div class="rings" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="planbig-grid">
+        <div>
+          <div class="mono" style="color:var(--grey);margin-bottom:14px"><span class="dot"></span>FREE AND NO OBLIGATION</div>
+          <h3>Don’t guess. <span class="r">Ask for a plan.</span></h3>
+          <p>Most business owners don’t know whether a series or regular content suits them, how many videos a month makes sense or what it should even cost. Instead of pitching, we build you a plan.</p>
+          <div class="pb-steps">
+            <div class="pb-step"><span class="n">1</span><span>You answer questions about your business and goals</span></div>
+            <div class="pb-step"><span class="n">2</span><span>You get a recommendation on screen right away, with the reasoning</span></div>
+            <div class="pb-step"><span class="n">3</span><span>We also email the plan and get in touch if you want</span></div>
+          </div>
+        </div>
+        <div class="pb-box">
+          <span class="mono">WHAT YOU’LL FIND OUT</span>
+          <b>Your personal plan</b>
+          <div class="li">Whether a series or regular content makes sense for you</div>
+          <div class="li">How many videos a month and to which channels</div>
+          <div class="li">Which format suits your business</div>
+          <div class="li">A price range with the reasoning</div>
+          <a href="#" class="btn btn-red" style="width:100%;margin-top:20px" onclick="openCalc();return false">Get your plan · 4 min</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOGI -->
+<section style="padding-top:70px">
+  <div class="wrap">
+    <div class="eyeb rv"><span class="dot"></span><span class="mono">Blog</span></div>
+    <h2 class="rv" style="font-size:clamp(27px,3.8vw,40px)">Read before you decide</h2>
+    <p class="sec-sub rv">We break down what’s really happening on social media and the numbers behind it. No sales talk.</p>
+    <div class="posts">
+      <div class="post rv" onclick="openM('b1')"><span class="cat">TRENDS</span><h3>Why a polished ad alone no longer sells</h3><p>78% of people feel more connected to a brand when they see the backroom. We look at what’s behind that number and where the big ad still fits.</p><div class="rd">Read more →</div></div>
+      <div class="post rv" onclick="openM('b2')"><span class="cat">FORMATS</span><h3>Six content formats that work best right now</h3><p>Behind the scenes, build in public, edutainment, sketch, founder-led and docu-style. What they are, who they suit and how to combine them.</p><div class="rd">Read more →</div></div>
+      <div class="post rv" onclick="openM('b3')"><span class="cat">NUMBERS</span><h3>Facebook’s organic reach is 2.2%. What do you do about it?</h3><p>Free reach is practically gone. But that doesn’t mean you have to buy ads right away. We talk about what actually helps.</p><div class="rd">Read more →</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- KKK -->
+<section id="kkk" style="padding-top:60px">
+  <div class="wrap" style="max-width:840px">
+    <div class="eyeb rv"><span class="dot"></span><span class="mono">FAQ</span></div>
+    <h2 class="rv" style="font-size:clamp(27px,3.8vw,40px)">Questions everyone asks</h2>
+    <div style="margin-top:28px">
+      <details class="rv"><summary>Our team doesn’t want to be on camera. What then?</summary><p>A completely normal worry, and there are several answers. We bring our own actors, make a series where the story is carried by hands, products and the setting, or start with the Test package where we put the boldest person up front and see how it goes. Honestly, most teams loosen up in front of the camera by the second shoot day.</p></details>
+      <details class="rv"><summary>Are actors included in the price?</summary><p>No, because we don’t know in advance whether they’re needed at all or how many. The number and level of actors depends entirely on the script and your budget. Some series need one person, others need five. We agree on it once the script is set and put the price as a separate line in the quote.</p></details>
+      <details class="rv"><summary>How long is the contract and what if it doesn’t work?</summary><p>The minimum is one season, three months, because anything shorter can’t prove itself. Notice is one month and the contract can be paused for a month if needed. At the end of the season we go over the numbers together and you decide whether a second season happens.</p></details>
+      <details class="rv"><summary>Who comes up with what we even film?</summary><p>We do. You don’t have to come with ideas, that’s our job. Before the first shoot we write the full concept, the characters and every episode. We need only one thing from you: let us into your backroom and tell us honestly what goes on there.</p></details>
+      <details class="rv"><summary>How much of our own time does it take?</summary><p>One shoot day a month and about an hour of communication. Everything else is on us. On the shoot day we film the whole month’s episodes at once, so your people don’t have to be on camera every week.</p></details>
+      <details class="rv"><summary>We already make big ads. Why do we need a series too?</summary><p>A big ad gives you a moment, a series gives you a relationship. One expensive video a year reaches many once, but holds no one. A series keeps your brand alive the eleven months a campaign isn’t running, and makes the next big ad land harder, because the audience already knows who you are.</p></details>
+      <details class="rv"><summary>Are the prices final?</summary><p>The numbers on the page are approximate and give the right ballpark. The final price is set after the strategy call, once we know exactly what you want to do. After that the price is locked for the whole season and there are no extra charges.</p></details>
+      <div class="quote rv" style="margin-top:24px">
+        <b>A question that wasn’t here? Ask it on the call. 30 minutes, free, no pressure.</b>
+        <a href="#broneeri" class="btn btn-red">Book a call</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRONEERI -->
+<section id="broneeri" style="padding-top:60px">
+  <div class="wrap">
+    <div class="eyeb rv"><span class="dot"></span><span class="mono">Let’s talk</span></div>
+    <h2 class="rv" style="font-size:clamp(27px,3.8vw,40px)">30 minutes, after which you know what to do</h2>
+
+    <div class="bookbig rv">
+      <div class="bb-left">
+        <span class="mono">FREE STRATEGY CALL</span>
+        <h3>No sales pitch. Just your business and a real plan.</h3>
+        <p>We go over together where you are now and what your goal is. We tell you honestly whether a series makes sense for you. If it doesn’t, we say so and suggest something else.</p>
+        <div class="bb-list">
+          <div class="li">We review your current social media</div>
+          <div class="li">We propose 2 to 3 series ideas from your business</div>
+          <div class="li">We tell you what it would cost and what it would bring</div>
+          <div class="li">You decide for yourself, with no pressure</div>
+        </div>
+      </div>
+      <div class="bb-right">
+        <div class="switch">
+          <div class="sw on" onclick="swMode(this,'kal')">Book a time</div>
+          <div class="sw" onclick="swMode(this,'tel')">Call me</div>
+        </div>
+
+        <div id="modeKal">
+          <h4>Pick a day and time</h4>
+          <p class="hint">The call happens on Google Meet or by phone, whichever suits you.</p>
+          <div class="daybar" id="daybar"></div>
+          <div class="times" id="times"></div>
+          <div class="frow"><div class="field"><input type="text" placeholder="Name"></div><div class="field"><input type="text" placeholder="Company"></div></div>
+          <div class="field"><input type="email" placeholder="Email"></div>
+          <div class="field"><input type="tel" placeholder="Phone"></div>
+          <button class="btn btn-red" style="width:100%" onclick="bookIt()">Confirm time</button>
+          <p class="fine">We confirm the time by email within one business day.</p>
+        </div>
+
+        <div id="modeTel" style="display:none">
+          <h4>Leave your details</h4>
+          <p class="hint">We’ll get in touch within one business day. No spam, no newsletters.</p>
+          <div class="frow"><div class="field"><input type="text" placeholder="Name"></div><div class="field"><input type="text" placeholder="Company"></div></div>
+          <div class="field"><input type="tel" placeholder="Phone"></div>
+          <div class="field"><input type="email" placeholder="Email"></div>
+          <div class="field"><select><option>What interests you most?</option><option>I want my own series</option><option>I want regular video content</option><option>A big production or ad</option><option>Not sure yet, I want advice</option></select></div>
+          <div class="field"><textarea placeholder="When’s best to call? Or write in a few words what’s on your mind."></textarea></div>
+          <button class="btn btn-ink" style="width:100%" onclick="alert('PROTOTYPE: connect a form here (Formspree, Make or Google Sheets) that sends the data to your email or CRM.')">Call me</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-foot">
+  <div class="wrap">
+    <h2 class="rv">Anyone can post.<br><span class="r">The ones with a story are remembered.</span></h2>
+    <p class="rv">In three months you’ll have either twelve episodes and an audience waiting for the next, or twelve random posts and the same question you have today. The difference costs one call.</p>
+    <div class="cta-row rv">
+      <a href="#broneeri" class="btn btn-red">Book a free call</a>
+      <a href="#" class="btn btn-ghost-d" onclick="openCalc();return false">Get your plan · 4 min</a>
+    </div>
+    <div class="fine2 rv">● WE REPLY WITHIN ONE BUSINESS DAY · PRICES EXCLUDE VAT AND ARE APPROXIMATE</div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-in">
+    <span><b style="color:#fff;font-family:var(--disp)">TAGATUBA</b> · behind the scenes studio · <a href="arsenal-en.html" style="color:#fff;text-decoration:underline">Arsenal Production House</a></span>
+    <span>info@tagatuba.ee · Tallinn &nbsp;·&nbsp; <a href="pakkumine-seriaalid-ja-videopaketid.pdf" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline">Price list (PDF)</a></span>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="overlay" id="ov" onclick="if(event.target===this)closeM()">
+  <div class="modal">
+    <div class="modal-head">
+      <button class="modal-close" onclick="closeM()">×</button>
+      <span class="mono" id="mTag"></span>
+      <h3 id="mName"></h3>
+      <div class="price" id="mPrice"></div>
+    </div>
+    <div class="modal-body">
+      <p id="mIntro" style="font-size:15.5px;margin-bottom:24px"></p>
+      <div class="mgrid">
+        <div><h4 id="mH1"></h4><div id="mGet"></div></div>
+        <div><h4 id="mH2"></h4><div id="mHow"></div></div>
+      </div>
+      <div class="modal-note" id="mNote"></div>
+      <div class="modal-cta">
+        <a href="#broneeri" class="btn btn-red" onclick="closeM()">Let’s talk about it</a>
+        <button class="btn btn-out" onclick="closeM()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CALC -->
+<div class="overlay" id="ovc" onclick="if(event.target===this)closeCalc()">
+  <div class="modal">
+    <div class="modal-head">
+      <button class="modal-close" onclick="closeCalc()">×</button>
+      <span class="mono" id="cStepLbl">STEP 1 / 6</span>
+      <h3 id="calcTitle">Let’s see what your business needs</h3>
+      <div class="pbar"><i id="pbar"></i></div>
+    </div>
+    <div class="modal-body">
+
+      <div class="cstep on" id="cs1">
+        <div class="cq"><h4>1. What’s your main goal?</h4><div class="copt">
+          <label><input type="radio" name="goal" value="Sales and inquiries"> More sales and inquiries</label>
+          <label><input type="radio" name="goal" value="Visibility"> Visibility and recognition, so people know us</label>
+          <label><input type="radio" name="goal" value="Community"> A following and a community</label>
+          <label><input type="radio" name="goal" value="Recruitment"> Good employees and an employer brand</label>
+          <label><input type="radio" name="goal" value="Launch"> Launching a new product or service</label>
+        </div></div>
+        <div class="cq"><h4>2. Are your people ready to be on camera?</h4><div class="copt">
+          <label><input type="radio" name="cam" value="jah"> Yes, we have some bright characters</label>
+          <label><input type="radio" name="cam" value="moni"> One or two would dare to try</label>
+          <label><input type="radio" name="cam" value="ei"> Probably not</label>
+          <label><input type="radio" name="cam" value="naitlejad"> Definitely not, actors instead</label>
+        </div></div>
+        <div class="modal-cta"><button class="btn btn-red" onclick="cGo(2)">Next</button></div>
+      </div>
+
+      <div class="cstep" id="cs2">
+        <div class="cq"><h4>3. How much content do you feel you need a month?</h4><div class="copt">
+          <label><input type="radio" name="vol" value="2"> A little, I’d start carefully</label>
+          <label><input type="radio" name="vol" value="4"> About one thing a week</label>
+          <label><input type="radio" name="vol" value="8"> Twice a week</label>
+          <label><input type="radio" name="vol" value="12"> As much as possible</label>
+        </div></div>
+        <div class="cq"><h4>4. Which describes you better?</h4><div class="copt">
+          <label><input type="radio" name="style" value="sari"> I want to stand out and be remembered</label>
+          <label><input type="radio" name="style" value="tava"> I just want to be consistently present</label>
+          <label><input type="radio" name="style" value="kvaliteet"> Our brand has to look expensive</label>
+          <label><input type="radio" name="style" value="soovitus"> Not sure, I trust your recommendation</label>
+        </div></div>
+        <div class="cq"><h4>5. Which channels do you have today?</h4><div class="copt row">
+          <label><input type="checkbox" name="ch" value="Facebook"> Facebook</label>
+          <label><input type="checkbox" name="ch" value="Instagram"> Instagram</label>
+          <label><input type="checkbox" name="ch" value="TikTok"> TikTok</label>
+          <label><input type="checkbox" name="ch" value="LinkedIn"> LinkedIn</label>
+          <label><input type="checkbox" name="ch" value="YouTube"> YouTube</label>
+          <label><input type="checkbox" name="ch" value="None"> None</label>
+        </div></div>
+        <div class="cq"><h4>6. Who posts and manages the channels?</h4><div class="copt">
+          <label><input type="radio" name="hald" value="ise"> We do it ourselves</label>
+          <label><input type="radio" name="hald" value="teie"> We’d like you to do it</label>
+        </div></div>
+        <div class="modal-cta"><button class="btn btn-red" onclick="cGo(3)">Next</button><button class="btn btn-out" onclick="cGo(1)">Back</button></div>
+      </div>
+
+      <div class="cstep" id="cs3">
+        <div class="cq"><h4>7. What do you do and how big are you?</h4><p class="sm">So we can suggest the right scale and format straight away.</p>
+          <div class="field"><select id="q_ind" onchange="indOther(this)">
+            <option value="">Choose a field…</option>
+            <option>Restaurant, café or food</option>
+            <option>Beauty and health</option>
+            <option>Sport and leisure</option>
+            <option>E-commerce and retail</option>
+            <option>Construction and real estate</option>
+            <option>Hospitality and tourism</option>
+            <option>Industry and manufacturing</option>
+            <option>B2B services</option>
+            <option>IT and technology</option>
+            <option>Other</option>
+          </select></div>
+          <div id="indOtherWrap" style="display:none;margin-top:9px"><div class="field"><input type="text" id="q_ind_other" placeholder="Write in a few words what you do"></div></div>
+        </div>
+        <div class="cq"><h4>8. Number of employees</h4><div class="copt row">
+          <label><input type="radio" name="emp" value="1–4"> 1–4</label>
+          <label><input type="radio" name="emp" value="5–19"> 5–19</label>
+          <label><input type="radio" name="emp" value="20–49"> 20–49</label>
+          <label><input type="radio" name="emp" value="50+"> 50+</label>
+        </div></div>
+        <div class="cq"><h4>9. Annual revenue</h4><div class="copt row">
+          <label><input type="radio" name="rev" value="up to €100k"> up to €100k</label>
+          <label><input type="radio" name="rev" value="€100k–500k"> €100k to €500k</label>
+          <label><input type="radio" name="rev" value="€500k–2M"> €500k to €2M</label>
+          <label><input type="radio" name="rev" value="over €2M"> over €2M</label>
+        </div></div>
+        <div class="cq"><h4>10. How long have you been operating?</h4><div class="copt row">
+          <label><input type="radio" name="yrs" value="under 1 year"> Under 1 year</label>
+          <label><input type="radio" name="yrs" value="1–3 years"> 1 to 3 years</label>
+          <label><input type="radio" name="yrs" value="3–7 years"> 3 to 7 years</label>
+          <label><input type="radio" name="yrs" value="7+ years"> Over 7 years</label>
+        </div></div>
+        <div class="modal-cta"><button class="btn btn-red" onclick="cGo(4)">Next</button><button class="btn btn-out" onclick="cGo(2)">Back</button></div>
+      </div>
+
+      <div class="cstep" id="cs4">
+        <div class="cq"><h4>11. Have you used a social media or video service before?</h4><div class="copt">
+          <label><input type="radio" name="prior" value="ei"> Haven’t tried before</label>
+          <label><input type="radio" name="prior" value="halb"> We’ve tried, but weren’t happy</label>
+          <label><input type="radio" name="prior" value="ok"> We’ve tried and it was okay</label>
+        </div></div>
+        <div class="cq"><h4>12. Who are your main competitors?</h4><p class="sm">Names are enough, no need for a long answer.</p>
+          <div class="field"><textarea id="q_comp1"></textarea></div>
+        </div>
+        <div class="cq"><h4>13. What do they do better or what makes them stand out?</h4>
+          <div class="field"><textarea id="q_comp2"></textarea></div>
+        </div>
+        <div class="cq"><h4>14. What sets you apart from those competitors?</h4>
+          <div class="field"><textarea id="q_diff"></textarea></div>
+        </div>
+        <div class="modal-cta"><button class="btn btn-red" onclick="cGo(5)">Next</button><button class="btn btn-out" onclick="cGo(3)">Back</button></div>
+      </div>
+
+      <div class="cstep" id="cs5">
+        <div class="cq"><h4>15. Describe your product or service in one sentence</h4>
+          <div class="field"><textarea id="q_biz" placeholder="e.g. We build home terraces and sauna houses across Estonia."></textarea></div>
+        </div>
+        <div class="cq"><h4>16. Who is your dream client?</h4><p class="sm">Describe who you’d most like to sell to.</p>
+          <div class="field"><textarea id="q_aud"></textarea></div>
+        </div>
+        <div class="cq"><h4>17. What’s the goal in numbers six months from now?</h4><p class="sm">e.g. 20 inquiries a month, 10,000 followers, three new hires, 15% more sales.</p>
+          <div class="field"><textarea id="q_goal"></textarea></div>
+        </div>
+        <div class="cq"><h4>18. Is there a story, a person or a character in your company the world should see?</h4><p class="sm">A craftsman who always says the same line. A dog that runs the office. Anything.</p>
+          <div class="field"><textarea id="q_star"></textarea></div>
+        </div>
+        <div class="cq"><h4>19. What’s frustrated you most on social media so far?</h4>
+          <div class="field"><textarea id="q_pain"></textarea></div>
+        </div>
+        <div class="modal-cta"><button class="btn btn-red" onclick="cGo(6)">Next</button><button class="btn btn-out" onclick="cGo(4)">Back</button></div>
+      </div>
+
+      <div class="cstep" id="cs6">
+        <div class="cq"><h4>20. When would you like to start?</h4><div class="copt">
+          <label><input type="radio" name="urgency" value="As soon as possible"> As soon as possible</label>
+          <label><input type="radio" name="urgency" value="Within 1–2 months"> Within the next 1 to 2 months</label>
+          <label><input type="radio" name="urgency" value="Just looking"> Just looking around, no rush</label>
+        </div></div>
+        <div class="cq"><h4>21. Who makes this decision?</h4><div class="copt">
+          <label><input type="radio" name="decider" value="ise"> I decide myself</label>
+          <label><input type="radio" name="decider" value="meeskond"> We decide together with the team or board</label>
+        </div></div>
+        <div class="cq"><h4>Where should we send the plan?</h4>
+          <div class="frow">
+            <div class="field"><input type="text" id="q_name" placeholder="Name *"></div>
+            <div class="field"><input type="text" id="q_comp" placeholder="Company *"></div>
+          </div>
+          <div class="field"><input type="email" id="q_mail" placeholder="Email *"></div>
+          <div class="field"><input type="tel" id="q_tel" placeholder="Phone"></div>
+        </div>
+        <label class="consult"><input type="checkbox" id="cmode" onchange="document.body.classList.toggle('cmode',this.checked)"> Filling this in with the client by phone</label>
+        <div id="notesWrap"><div class="field"><textarea id="q_notes" placeholder="Internal notes from the call (client won’t see)"></textarea></div></div>
+        <div class="modal-cta"><button class="btn btn-red" onclick="cCalc()">Show my plan</button><button class="btn btn-out" onclick="cGo(5)">Back</button></div>
+      </div>
+
+      <div class="cstep" id="cs7">
+        <div class="cres">
+          <span class="mono">OUR RECOMMENDATION</span>
+          <b id="rName">…</b>
+          <div class="pr" id="rPrice">…</div>
+          <p id="rDesc"></p>
+        </div>
+        <h4 style="font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;color:var(--red);margin-bottom:10px">WHY THIS ONE</h4>
+        <div class="cwhy" id="rWhy"></div>
+        <div class="modal-note" style="margin-top:20px"><b>What’s next:</b> this is an initial recommendation based on our experience. We’ll review your answers and get in touch within one business day to set the exact plan and final price. If you like, book a time that suits you right now.</div>
+        <div class="modal-cta">
+          <a href="#broneeri" class="btn btn-red" onclick="closeCalc()">Book a free call</a>
+          <button class="btn btn-out" onclick="copySum()" id="copyBtn">Copy summary</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<script>
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.1});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+/* --- sujuv kerimine kõigile lehesisestele linkidele --- */
+document.addEventListener('click',function(e){
+  const a=e.target.closest('a[href^="#"]');
+  if(!a) return;
+  const href=a.getAttribute('href');
+  if(!href || href==='#') return;              // kalkulaatori jms lingid jäävad puutumata
+  const t=document.querySelector(href);
+  if(!t) return;
+  e.preventDefault();
+  const nav=document.querySelector('nav');
+  const off=(nav?nav.offsetHeight:64)+20;
+  const y=t.getBoundingClientRect().top+window.pageYOffset-off;
+  window.scrollTo({top:y,behavior:'smooth'});
+  history.replaceState(null,'',href);
+  const mn=document.getElementById('mnav');
+  if(mn&&mn.classList.contains('on')){mn.classList.remove('on');document.getElementById('burger').classList.remove('on')}
+});
+
+function toggleNav(){
+  document.getElementById('mnav').classList.toggle('on');
+  document.getElementById('burger').classList.toggle('on');
+}
+function toggleAcc(id){document.getElementById(id).classList.toggle('open')}
+function filt(btn,cat){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));btn.classList.add('on');
+  document.querySelectorAll('#worksGrid .work').forEach(w=>{w.style.display=(cat==='all'||w.dataset.cat===cat)?'block':'none'});
+}
+function swMode(el,m){
+  document.querySelectorAll('.sw').forEach(s=>s.classList.remove('on'));el.classList.add('on');
+  document.getElementById('modeKal').style.display=(m==='kal')?'block':'none';
+  document.getElementById('modeTel').style.display=(m==='tel')?'block':'none';
+}
+/* calendar */
+const DAYS=['S','M','T','W','T','F','S'];
+const TIMES=['09:00','10:30','13:00','15:30'];
+let selDay=null,selTime=null;
+(function buildCal(){
+  const db=document.getElementById('daybar');let d=new Date();
+  for(let i=1;i<=5;i++){
+    const x=new Date(d.getTime()+i*86400000);
+    const el=document.createElement('div');el.className='day';
+    el.innerHTML='<b>'+x.getDate()+'.'+(x.getMonth()+1)+'</b><span>'+DAYS[x.getDay()]+'</span>';
+    el.onclick=()=>{document.querySelectorAll('.day').forEach(y=>y.classList.remove('sel'));el.classList.add('sel');selDay=x.getDate()+'.'+(x.getMonth()+1)};
+    db.appendChild(el);
+  }
+  const tm=document.getElementById('times');
+  TIMES.forEach(t=>{const el=document.createElement('div');el.className='time';el.textContent=t;
+    el.onclick=()=>{document.querySelectorAll('.time').forEach(y=>y.classList.remove('sel'));el.classList.add('sel');selTime=t};
+    tm.appendChild(el)});
+})();
+function bookIt(){
+  if(!selDay||!selTime){alert('Please pick a day and time.');return}
+  alert('Time selected: '+selDay+' at '+selTime+'\n\nPROTOTYPE: connect a real calendar here (Calendly or Google Calendar) and a confirmation email.');
+}
+
+const DATA={
+ f1:{tag:'FORMAT · BEHIND THE SCENES',name:'Backroom',intro:'The cleanest and best-working format there is. The camera goes where a client would otherwise never end up: the kitchen, the workshop, the warehouse, the back office.',
+  h1:'WHAT IT IS MADE OF',get:['How the thing gets made, start to finish','The people who do it','Moments you don’t usually show','Before and after, the satisfying kind'],
+  h2:'WHO IT SUITS',how:['Manufacturing and craft','Restaurants and cafés','Auto service and workshops','Salons and clinics','Hospitality and tourism'],
+  note:'<b>Why it works:</b> 78% of people say backroom content makes them feel more connected to a brand. It’s also the easiest to start, because there is nothing to invent, only to film what happens anyway.'},
+ f2:{tag:'FORMAT · BUILD IN PUBLIC',name:'The honest road',intro:'The boldest format and therefore the most trustworthy. You talk honestly about what went wrong, what it cost and how you came out of it.',
+  h1:'WHAT IT IS MADE OF',get:['Mistakes and failures, honestly','A rough patch and getting out of it','Numbers and decisions on the table','What you’d do differently today'],
+  h2:'WHO IT SUITS',how:['An owner who dares to talk','Growing companies','B2B services','Fields with a lot of myths'],
+  note:'<b>A warning and a promise at once:</b> this format takes guts, but it brings the most loyal audience. People remember the one who spoke honestly long after they’ve forgotten everyone who only talked about wins.'},
+ f3:{tag:'FORMAT · EDUTAINMENT',name:'We teach it',intro:'You teach and entertain at once. You show how something works or how to do it yourself, and get back an authority you can’t buy with ads.',
+  h1:'WHAT IT IS MADE OF',get:['How to do something right','Common mistakes and how to avoid them','Quick tricks nobody knows','Busting myths in your field'],
+  h2:'WHO IT SUITS',how:['Specialists and experts','B2B and services','Technical fields','Products that need explaining'],
+  note:'<b>Why it sells:</b> 96% of people watch an explainer video before buying a service or product. If that video is yours, you’ve already won, because you taught them.'},
+ f4:{tag:'FORMAT · SKETCH COMEDY',name:'The comedy zone',intro:'Short sketches from your own world. The most shareable format there is, because funny things get passed on, serious things don’t.',
+  h1:'WHAT IT IS MADE OF',get:['Recurring characters and their quirks','Situations every client recognizes','An inside joke that becomes a brand','Repetition the audience starts waiting for'],
+  h2:'WHO IT SUITS',how:['Teams with a sense of humour','Service businesses','A younger audience','Anyone who wants shareable content'],
+  note:'<b>An honest note:</b> this is the hardest format to do well and the easiest to do badly. It needs a strong script and people who feel free on camera. We write, you play.'},
+ f5:{tag:'FORMAT · FOUNDER-LED / EGC',name:'People up front',intro:'The owner or the staff speak for themselves, with their own face and their own words. The fastest-growing format in the world, because a brand with a face beats a faceless one every time.',
+  h1:'WHAT IT IS MADE OF',get:['The owner’s view and experience','Staff stories and their workday','Opinions and takes in your field','Answers to clients’ questions'],
+  h2:'WHO IT SUITS',how:['Companies where the owner is the face','Small teams','Service providers','B2B where people buy from people'],
+  note:'<b>Why it works:</b> 64% trust a brand more when it shows its employees, and 63% prefer following a brand with a human face over a faceless corporate account. If you have a team, you have a channel.'},
+ f6:{tag:'FORMAT · DOCU-STYLE',name:'The client journey',intro:'One real client, one real problem, one real solution. Documentary logic in short form: a character, a conflict, a resolution.',
+  h1:'WHAT IT IS MADE OF',get:['The client’s situation before','The process and the decisions along the way','The result and the client’s reaction','Numbers that prove it'],
+  h2:'WHO IT SUITS',how:['Construction and renovation','Real estate','Clinics and trainers','Anything where the result is visible'],
+  note:'<b>Why it converts:</b> it’s a testimonial that doesn’t look like one. The viewer identifies with the character and thinks the whole way through that they have exactly the same problem.'},
+
+ test:{tag:'SERIES PACKAGE · LET’S TEST IT',name:'SERIES Test',price:'from €990 / mo',
+  intro:'A pilot season for those who want to see how a series sits with their business before a big decision. The same system and the same quality, just a smaller volume and half the risk.',
+  h1:'WHAT YOU GET',get:['6 episodes total, 2 a month','Script: idea, characters and every episode set before the shoot','Each episode with its own script','3 to 4 sales windows per season','Stories and photo material from the shoot day','A monthly report with inquiries and sales'],
+  h2:'HOW THE MONTH GOES',how:['Start of the month: half a shoot day at your place','One shoot films both of that month’s episodes','3 working days and the first cut is ready to view','A new episode goes up every other week','A short call at month’s end and next month’s plan'],
+  note:'<b>Script and building the series:</b> before the first shoot we write the idea, characters, episode outlines and the sales-window plan. For the Test package this is a one-off from €690. <br><br><b>Who it suits:</b> a smaller company, or one that isn’t sure the team works on camera. Two episodes a month is a weaker rhythm than four, so growth is slower. Most Test clients move to the Phone package after the third month.'},
+ telefon:{tag:'SERIES PACKAGE · AUTHENTIC AND CLOSE',name:'SERIES Phone',price:'from €1990 / mo',
+  intro:'Our recommendation for most. Four episodes a month means a new one every week, and that is exactly the rhythm a viewer can wait for. Phone-shot content isn’t the cheap option, it’s a deliberate choice: it looks honest and close, not like an ad.',
+  h1:'WHAT YOU GET',get:['12 episodes per season, 4 a month','Script: idea, characters and the whole season set before the shoot','Each episode with its own script','6 to 8 sales windows per season','Stories and photo material from the shoot day','A monthly report with inquiries and sales'],
+  h2:'HOW THE MONTH GOES',how:['Start of the month: 1 shoot day at your place','One shoot films all four of that month’s episodes','3 working days and the cuts are ready to view','A new episode goes up every week','A sales window runs alongside the episode theme','A report at month’s end and next month’s plan'],
+  note:'<b>Script and building the series:</b> before the first shoot we write the concept, characters, episode outlines, the season story and the sales-window plan. A one-off from €1500, half price for a second season. <br><br><b>Who it suits:</b> a company with people worth showing that wants to really get moving in three months.'},
+ kaamera:{tag:'SERIES PACKAGE · PROFESSIONAL PICTURE',name:'SERIES Camera',price:'from €2990 / mo',
+  intro:'The same series and the same rhythm, but production on another level. Camera, light, sound and color grade. For when the brand has to look more expensive than the competitor and a phone picture no longer carries it.',
+  h1:'WHAT YOU GET',get:['12 episodes per season, 4 a month','Camera production: light, sound, color grade','Script and the whole season story set before the shoot','6 to 8 sales windows per season','Photos and stories from the same shoot','A monthly report with inquiries and sales'],
+  h2:'HOW THE MONTH GOES',how:['Start of the month: 1 to 2 shoot days at your place','A crew arrives with the gear','5 working days and the cuts are ready to view','A new episode goes up every week','A sales window runs alongside the episode theme','A report at month’s end and next month’s plan'],
+  note:'<b>Script and building the series:</b> a one-off from €1500, half price for a second season. <br><br><b>Who it suits:</b> a brand whose client buys for quality and for whom the picture is part of the promise. Real estate, cars, restaurants, clinics, premium services.'},
+ produktsioon:{tag:'SERIES PACKAGE · CUSTOM',name:'SERIES Production',price:'from €4500 / mo',
+  intro:'TV-series level on social media. Actors, makeup, a full crew and real screenwriting. There is no ready package here, because every series like this is its own project with its own logic.',
+  h1:'WHAT YOU GET',get:['Number and length of episodes by agreement','Casting and actors to suit the script','Makeup, wardrobe, props','Multiple locations, graphics and effects','In-depth screenwriting and creative direction','Full service with management and ads if wanted'],
+  h2:'HOW THE PROJECT GOES',how:['A concept workshop at your place','Scripts and casting','Shoot days per plan','Post-production and graphics','Publishing and campaign together','A big analysis at season’s end'],
+  note:'<b>What drives the price:</b> the number and length of episodes, crew size, the number and level of actors, the number of locations, the amount of graphics and effects, props and wardrobe, and the pace of the schedule. Actors aren’t in the base price, because the need only becomes clear from the script. We put the quote together after the strategy call, and then the price is locked.'},
+
+ start:{tag:'VIDEO PACKAGE',name:'START',price:'from €690 / mo',
+  intro:'The smallest step to get consistency going. Four videos a month means there is something new in your channel every week, without you having to think about it.',
+  h1:'WHAT YOU GET',get:['4 videos a month','Ideas and scripts from us','Edit, subtitles, music','All formats: reels, TikTok, Shorts','Material for 1 to 2 channels'],
+  h2:'HOW THE MONTH GOES',how:['Start of the month: 1 shoot day, up to 2 hours','We film all four videos at once','3 working days and the cuts are ready to view','You post yourself or add the management layer','A short summary at month’s end'],
+  note:'<b>Good to know:</b> posting isn’t in this price. If you want that to be our job too, add Management from €390. And if you want your content to have a story and characters, look at the Test series package.'},
+ kasv:{tag:'VIDEO PACKAGE · MOST POPULAR',name:'GROWTH',price:'from €1190 / mo',
+  intro:'Two videos a week is the volume at which the algorithm really starts to notice you. This is where most clients first see movement in the numbers.',
+  h1:'WHAT YOU GET',get:['8 videos a month','Ideas and scripts from us','Edit, subtitles, music','Story material and photos from the shoot day','Material for up to 3 channels'],
+  h2:'HOW THE MONTH GOES',how:['Start of the month: 1 to 2 shoot days','We film the month’s content in one go','3 working days and the cuts are ready to view','You post yourself or add the management layer','A report at month’s end and next month’s plan'],
+  note:'<b>Good to know:</b> this is our best-selling video package. If your goal is to stand out, not just be present, it’s worth looking at the Test series package for the same money, where the content has a story and characters.'},
+ pro:{tag:'VIDEO PACKAGE',name:'PRO',price:'from €1790 / mo',
+  intro:'Three videos a week and so much material that it fills every channel at once. For anyone who wants to turn social media into a real sales channel.',
+  h1:'WHAT YOU GET',get:['12 videos a month','Ideas and scripts from us','Edit, subtitles, music','A photo session within the shoot day','Material for up to 4 channels'],
+  h2:'HOW THE MONTH GOES',how:['2 shoot days a month','We film video and photo material at once','3 working days and the cuts are ready to view','You post yourself or add the management layer','A report at month’s end and next month’s plan'],
+  note:'<b>Good to know:</b> at this volume it’s worth considering ad amplification too, because great content with no budget only reaches your existing audience.'},
+ custom:{tag:'VIDEO PACKAGE · CUSTOM',name:'CUSTOM',price:'On request',
+  intro:'For when no ready package fits. We build the volume, formats and production size exactly to your need, whether that’s a one-off campaign or a year-long collaboration on its own terms.',
+  h1:'WHAT YOU CAN DO',get:['One-off campaigns and product launches','Bigger productions with actors and a crew','Photo sessions and product shoots','Mixed packages: part series, part regular content','Seasonal volume that changes month to month'],
+  h2:'WHAT HAPPENS NEXT',how:['We talk through exactly what’s needed','We put together the volume and schedule','You get a personal quote','We start on the agreed date'],
+  note:'<b>Why there’s no price here:</b> because custom means custom. For one client it’s two shoot days a year, for another eight videos a month plus a big ad. Talk to us and we’ll set the number in one call.'},
+
+ k1:{tag:'LAYER 1',name:'Content',price:'from €690 / mo',
+  intro:'This is the only layer you definitely need. Everything to do with making the video, from the idea to the finished file in the right format with subtitles.',
+  h1:'WHAT’S INCLUDED',get:['Idea and script for each video','A shoot day at your place','Edit, subtitles, music, color grade','All formats: vertical, square, horizontal','Stories and photo material from the shoot day','A monthly report and next month’s plan'],
+  h2:'WHAT AFFECTS IT',how:['Number of videos or episodes a month','Whether phone or camera production','Number and length of shoot days','Whether actors or special solutions are needed','How many locations there are'],
+  note:'<b>Price range:</b> video packages start at €690, series packages at €990. The exact number depends on the volume and production level. For a series there’s an added one-off for scripting and building the series.'},
+ k2:{tag:'LAYER 2',name:'Management',price:'from €390 / mo',
+  intro:'Take this if you don’t want to deal with posting. We put content up on time, keep comments and messages answered and send a monthly report.',
+  h1:'WHAT’S INCLUDED',get:['Posting and scheduling','Answering comments and messages','Uploading story content','A monthly report: inquiries, calls and sales, not likes','Keeping channels tidy and profiles up to date'],
+  h2:'PRICE BY CHANNELS',how:['1 to 2 channels: from €390','3 channels: from €590','4 to 5 channels: from €890','Each channel means its own content adaptation','TikTok and LinkedIn are different audiences and different tones'],
+  note:'<b>Why the number of channels affects the price:</b> the same video can’t just be copied everywhere. Each channel needs its own headline, its own length and its own tone. And each channel’s comments have to be handled separately.'},
+ k3:{tag:'LAYER 3',name:'Amplification',price:'from €390 / mo + ad budget',
+  intro:'Take this if you want content to reach beyond your existing audience. We build Meta and TikTok campaigns, test variants and optimize. The ad spend goes straight to the platform from your own account.',
+  h1:'WHAT’S INCLUDED',get:['Campaign setup and targeting','Several creative variants to test','Ongoing optimization','A monthly report: what it cost and what came back','Advice on how much budget is worth putting in'],
+  h2:'PRICE BY BUDGET',how:['Ad budget up to €1000: from €390','Budget €1000 to €3000: from €690','Budget over €3000: 15%, at least €990','The ad budget isn’t included and goes straight to the platform'],
+  note:'<b>Why the ad money runs from your account:</b> that way you see exactly where every euro goes, and the account with its whole history stays yours even if the collaboration ever ends. We take no commission on the ad spend.'},
+
+ w1:{tag:'OUR WORK · HOSPITALITY',name:'Nights at Rooslepa',
+  intro:'A series from our own accommodation business, told by the cleaner. Each episode starts with stepping through the door and ends with a one-line verdict on the previous guests.',
+  h1:'FORMAT',get:['Backroom plus comedy','12 episodes per season, a new one every week','The main character is the cleaner','Every episode has the same start and the same ending'],
+  h2:'WHY IT WORKS',how:['Cleaning content is a genre of its own that travels well','The traces guests leave are an endless source of material','The Rooslepa nature sells itself in the background','Each episode ends with a hook to the next'],
+  note:'<b>Numbers:</b> real results go here once the first season is done. Bookings, follower growth and watch times.'},
+ w2:{tag:'OUR WORK · CONSTRUCTION',name:'Jack builds',
+  intro:'One man, one house and an endless run of problems. The material didn’t arrive, the client changed their mind, the rain came at the wrong time. And the house still gets finished.',
+  h1:'FORMAT',get:['Honest road plus backroom','12 episodes per season','The main character is Jack the builder','Each episode one new problem and its solution'],
+  h2:'WHY IT WORKS',how:['Construction is a field where everyone fears surprises','Honestly showing the problems builds trust','Finishing the house is a natural season story','The viewer wants to know if it gets done'],
+  note:'<b>Numbers:</b> real results go here once the first season is done.'},
+ w3:{tag:'OPEN SLOT',name:'Your series here',
+  intro:'Let’s talk through what would make a series out of your business. The call is free and we sell nothing in it.',
+  h1:'WHAT HAPPENS NEXT',get:['A 30-minute free strategy call','We review your business and your people','We propose 2 to 3 series ideas','You choose, we write it'],
+  h2:'HOW LONG IT TAKES',how:['The call: this week or next','Script and building the series: 2 weeks','First shoot day: start of the month','First episode live: 3 weeks after signing'],
+  note:'<b>No obligation:</b> if a series doesn’t suit your business, we’ll say so honestly and suggest something else.'},
+
+ b1:{tag:'BLOG · TRENDS',name:'Why a polished ad alone no longer sells',
+  intro:'The short version: the viewer has learned to recognize an ad and closes it before you’ve said anything. But the same viewer watches a video about how someone does their work to the end. This doesn’t mean the big ad is dead. It means it can’t be the only thing you do.',
+  h1:'THE NUMBERS THAT SHOW IT',get:['78% feel more connected to a brand when they see the backroom','64% trust a brand more when it shows its staff','58% would trust a brand more if it posted fewer ads','45% unfollow when there are too many ads','52% lose interest when they suspect AI'],
+  h2:'WHAT TO DO ABOUT IT',how:['Show the process, not just the result','Put people in frame, not the logo','Leave the slip-ups in, they’re proof','Don’t try to sell with every video','Save the big ad for the moment you have something to say'],
+  note:'<b>Sources:</b> Brand Authenticity Statistics 2026, Hootsuite Social Trends 2026, Content Marketing Trends 2026. The full article goes here on this site.'},
+ b2:{tag:'BLOG · FORMATS',name:'Six formats that work right now',
+  intro:'The world has settled on six content formats that work best in short video. Most companies use one of them, the successful ones combine two.',
+  h1:'THE FORMATS',get:['Behind the scenes: how the thing gets made','Build in public: mistakes and learning from them','Edutainment: you teach and entertain','Sketch: funny situations from your world','Founder-led and EGC: people speak for themselves','Docu-style: one client, one story'],
+  h2:'HOW TO CHOOSE',how:['Look at who on your team works on camera','Think about what’s mysterious in your field','Ask what clients ask about most','Combine two formats, not six','Test for three months and then decide'],
+  note:'<b>A practical tip:</b> start with the backroom, because there’s nothing to invent, it happens anyway. Add a second format once the first one works.'},
+ b3:{tag:'BLOG · NUMBERS',name:'Organic reach is 2.2%',
+  intro:'Facebook’s organic reach has fallen to 2.2%. That means out of a hundred followers, two see your post. Free reach is practically gone.',
+  h1:'WHAT FOLLOWS FROM THIS',get:['Follower count alone means nothing anymore','The algorithm decides, not your followers','Good content gets reach, mediocre doesn’t','Ads are amplification, not a replacement','Content watched to the end gets free reach'],
+  h2:'WHAT TO DO',how:['Make content that holds the viewer to the end','Build a returning viewer, not a one-off','Use ads to amplify good content','Don’t buy followers, buy attention','Measure inquiries, not likes'],
+  note:'<b>Source:</b> Sendible Social Media Trends Report 2026. The full article goes here on this site.'}
+};
+function openM(k){
+  const d=DATA[k];if(!d)return;
+  document.getElementById('mTag').textContent=d.tag;
+  document.getElementById('mName').textContent=d.name;
+  const p=document.getElementById('mPrice');
+  p.innerHTML=d.price||'';p.style.display=d.price?'block':'none';
+  document.getElementById('mIntro').textContent=d.intro;
+  document.getElementById('mH1').textContent=d.h1;
+  document.getElementById('mH2').textContent=d.h2;
+  document.getElementById('mGet').innerHTML=d.get.map(i=>'<div class="li">'+i+'</div>').join('');
+  document.getElementById('mHow').innerHTML=d.how.map(i=>'<div class="li">'+i+'</div>').join('');
+  document.getElementById('mNote').innerHTML=d.note;
+  document.getElementById('ov').classList.add('open');document.body.style.overflow='hidden';
+}
+function closeM(){document.getElementById('ov').classList.remove('open');document.body.style.overflow=''}
+
+function openCalc(){document.getElementById('ovc').classList.add('open');document.body.style.overflow='hidden';cGo(1)}
+function closeCalc(){document.getElementById('ovc').classList.remove('open');document.body.style.overflow=''}
+const CALC_TOTAL=6;
+const CALC_TITLES=['','Let’s see what your business needs','A bit more detail','Tell us about your company','Competitors and experience','More about your business','Timeline and contact'];
+function cGo(n){
+  if(n===2&&(!rv('goal')||!rv('cam'))){alert('Please answer both questions.');return}
+  if(n===3&&(!rv('vol')||!rv('style')||!rv('hald'))){alert('Please answer all questions.');return}
+  if(n===4&&(!document.getElementById('q_ind').value||!rv('emp')||!rv('rev')||!rv('yrs'))){alert('Please fill in the field, number of employees, revenue and time in business.');return}
+  if(n===5&&!rv('prior')){alert('Please select whether you have used a similar service before.');return}
+  [1,2,3,4,5,6,7].forEach(i=>{const el=document.getElementById('cs'+i);if(el)el.classList.toggle('on',i===n)});
+  if(n<=CALC_TOTAL){
+    document.getElementById('cStepLbl').textContent='STEP '+n+' / '+CALC_TOTAL;
+    document.getElementById('pbar').style.width=Math.round(n*100/CALC_TOTAL)+'%';
+    document.getElementById('calcTitle').textContent=CALC_TITLES[n];
+  }
+  document.querySelector('#ovc .modal').scrollIntoView({block:'start'});
+}
+function indOther(sel){document.getElementById('indOtherWrap').style.display=(sel.value==='Other')?'block':'none'}
+function rv(n){const e=document.querySelector('input[name="'+n+'"]:checked');return e?e.value:''}
+function cvs(n){return Array.from(document.querySelectorAll('input[name="'+n+'"]:checked')).map(e=>e.value)}
+document.querySelectorAll('.copt input').forEach(i=>{
+  i.addEventListener('change',()=>{
+    if(i.type==='radio')i.closest('.copt').querySelectorAll('label').forEach(l=>l.classList.remove('on'));
+    i.closest('label').classList.toggle('on',i.checked);
+  });
+});
+let SUM='';
+function cCalc(){
+  const nm=document.getElementById('q_name').value.trim(),cp=document.getElementById('q_comp').value.trim(),ml=document.getElementById('q_mail').value.trim();
+  if(!nm||!cp||!ml){alert('Please fill in name, company and email.');return}
+  if(!rv('urgency')||!rv('decider')){alert('Please answer the two more questions above.');return}
+  const goal=rv('goal'),cam=rv('cam'),vol=rv('vol'),style=rv('style'),hald=rv('hald'),ch=cvs('ch'),
+        indSel=document.getElementById('q_ind').value,indOtherV=document.getElementById('q_ind_other').value.trim(),
+        ind=(indSel==='Other'&&indOtherV)?('Other: '+indOtherV):indSel,
+        emp=rv('emp'),rev=rv('rev'),yrs=rv('yrs'),prior=rv('prior'),urgency=rv('urgency'),decider=rv('decider');
+  let name,price,desc;const why=[];
+  const camOk=(cam==='jah'||cam==='moni');
+  const wantsSeries=(style==='sari')||(style==='soovitus'&&camOk)||(style==='kvaliteet'&&camOk);
+  const bigOrg=(emp==='50+'||rev==='over €2M');
+  if(wantsSeries){
+    if(style==='kvaliteet'||bigOrg){name='SERIES Camera';price='from €2990 / mo';desc='A series with camera production, 4 episodes a month. A brand that looks more expensive than the competitor.'}
+    else if(vol==='2'){name='SERIES Test';price='from €990 / mo';desc='A pilot season, 2 episodes a month, 6 total. Smaller risk, same system.'}
+    else{name='SERIES Phone';price='from €1990 / mo';desc='A series, 4 episodes a month, a new one every week. Our recommendation for most.'}
+    why.push('You want to stand out and be remembered. Only a series does that, because nobody remembers single posts.');
+    if(!camOk){why.push('Your team is shy of the camera. No problem: we make the series with actors, or in a format where hands, products and the setting carry the story. The need for actors and the price are agreed based on the script.')}
+    else{why.push('You have people worth showing. That is an asset most companies envy, and a series greatest weapon.')}
+  } else {
+    if(vol==='12'){name='PRO';price='from €1790 / mo';desc='12 videos a month. Maximum volume and material for every channel.'}
+    else if(vol==='8'){name='GROWTH';price='from €1190 / mo';desc='8 videos a month. The volume at which the algorithm starts noticing you.'}
+    else{name='START';price='from €690 / mo';desc='4 videos a month. The smallest step to get consistency going.'}
+    why.push('For you, consistency matters more than standing out right now. We start with content that simply works, and you can move up to a series whenever you like.');
+  }
+  if(goal==='Sales and inquiries')why.push('The goal is sales and inquiries, so we build sales windows into every month and report inquiries, not likes.');
+  if(goal==='Recruitment')why.push('For an employer brand the strongest format is the one where the staff speak for themselves. People trust a brand more when they see its team.');
+  if(goal==='Visibility')why.push('Visibility is about repeated exposure. The series format brings the same viewer back, which is many times cheaper than buying new attention each time.');
+  if(goal==='Launch')why.push('For a launch it is worth considering one bigger video alongside the series to give the launch momentum. Our parent house Arsenal Production House makes that.');
+  if(ch.includes('None'))why.push('There are no channels yet, so we build them in the first month. That is included in the work.');
+  else if(ch.length&&!ch.includes('TikTok'))why.push('TikTok is missing, but it currently has the biggest organic reach. We recommend adding it.');
+  if(hald==='teie')why.push('Since you want posting and comments to be our job, Management is added from €390 a month, depending on the number of channels.');
+  else why.push('Since you post yourself, the price stays pure production. You can always add Management later.');
+  if(bigOrg&&!wantsSeries)why.push('For a company your size it is worth considering the Camera level or full production too, since the brand carries greater responsibility.');
+  if(prior==='halb')why.push('A bad past experience with an agency is more common than you think. On the call we talk directly about what went wrong, so we do not repeat the same mistake.');
+  if(urgency==='As soon as possible')why.push('A fast start is possible: once the strategy call and the script are set, the first shoot day can happen within the next two weeks.');
+  if(decider==='meeskond')why.push('Since the decision is made with the team, we send the plan summary in writing. In the meantime you can forward our <a href="pakkumine-seriaalid-ja-videopaketid.pdf" target="_blank" style="color:var(--red);font-weight:600">full price list (PDF)</a> to colleagues right away.');
+  document.getElementById('rName').textContent=name;
+  document.getElementById('rPrice').textContent=price;
+  document.getElementById('rDesc').textContent=desc;
+  document.getElementById('rWhy').innerHTML=why.map(w=>'<div class="li">'+w+'</div>').join('');
+  const g=id=>document.getElementById(id).value.trim()||'-';
+  SUM='=== CONTENT PLAN INQUIRY ===\n'+cp+' | '+nm+' | '+ml+' | '+g('q_tel')+
+  '\nField: '+(ind||'-')+' | Employees: '+(emp||'-')+' | Revenue: '+(rev||'-')+' | In business: '+(yrs||'-')+
+  '\n\n--- CHOICES ---\nGoal: '+goal+'\nCamera readiness: '+cam+'\nDesired volume: '+vol+'\nStyle: '+style+'\nChannels: '+(ch.join(', ')||'-')+'\nManagement: '+hald+
+  '\n\n--- COMPETITION AND EXPERIENCE ---\nPast experience: '+prior+'\nCompetitors: '+g('q_comp1')+'\nWhat they do better: '+g('q_comp2')+'\nDifferentiation: '+g('q_diff')+
+  '\n\n--- ABOUT THE BUSINESS ---\nProduct/service: '+g('q_biz')+'\nDream client: '+g('q_aud')+'\nGoal in numbers (6mo): '+g('q_goal')+'\nStory/character: '+g('q_star')+'\nFrustration: '+g('q_pain')+
+  '\n\n--- TIMELINE ---\nStart time: '+urgency+'\nDecision-maker: '+decider+
+  '\n\n--- RECOMMENDATION ---\n'+name+' ('+price+')'+
+  (document.getElementById('cmode').checked?('\n\nNOTES: '+g('q_notes')):'');
+  document.getElementById('cStepLbl').textContent='VALMIS';
+  document.getElementById('calcTitle').textContent='Sinu plaan on valmis';
+  document.getElementById('pbar').style.width='100%';
+  [1,2,3,4,5,6,7].forEach(i=>document.getElementById('cs'+i).classList.toggle('on',i===7));
+  document.querySelector('#ovc .modal').scrollIntoView({block:'start'});
+}
+function copySum(){
+  const b=document.getElementById('copyBtn');
+  navigator.clipboard.writeText(SUM).then(()=>{b.textContent='Copied ✓';setTimeout(()=>b.textContent='Copy summary',2000)}).catch(()=>alert(SUM));
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeM();closeCalc()}});
+</script>
+<script>
+(function(){
+  var prog=document.getElementById('ttProg');
+  addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-innerHeight;prog.style.width=(h>0?scrollY/h*100:0)+'%'},{passive:true});
+  var cur=document.querySelector('.ttcur'),cur2=document.querySelector('.ttcur2'),lbl=document.getElementById('ttCurLbl');
+  if(matchMedia('(pointer:fine)').matches){
+    var mx=0,my=0,cx=0,cy=0;
+    addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';var t=e.target.closest('[data-cursor]');if(t){cur2.classList.add('big');lbl.textContent=t.dataset.cursor||'VIEW'}else cur2.classList.remove('big')});
+    (function l(){cx+=(mx-cx)*.16;cy+=(my-cy)*.16;cur2.style.left=cx+'px';cur2.style.top=cy+'px';requestAnimationFrame(l)})();
+  }
+  document.querySelectorAll('.fmt,.work,.post').forEach(function(el){el.dataset.cursor='VIEW'});
+  var tc=document.getElementById('ttTc');
+  if(tc){var t0=Date.now();setInterval(function(){var ms=Date.now()-t0,f=Math.floor(ms/(1000/24))%24,ss=Math.floor(ms/1000)%60,mm=Math.floor(ms/60000)%60,hh=Math.floor(ms/3600000),p=function(n){return String(n).padStart(2,'0')};tc.textContent='TC '+p(hh)+':'+p(mm)+':'+p(ss)+':'+p(f)},42);}
+  var cio=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;cio.unobserve(e.target);var el=e.target,end=parseFloat(el.dataset.count),dec=+(el.dataset.dec||0),suf=el.dataset.suf||'',t0=performance.now(),dur=1400;(function st(t){var p=Math.min(1,(t-t0)/dur),v=end*(1-Math.pow(1-p,3));el.textContent=(dec?v.toFixed(dec).replace('.',','):Math.round(v))+suf;if(p<1)requestAnimationFrame(st)})(t0)})},{threshold:.5});
+  document.querySelectorAll('.ct').forEach(function(el){cio.observe(el)});
+})();
+</script>
+</body>
+</html>

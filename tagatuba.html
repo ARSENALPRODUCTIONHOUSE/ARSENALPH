@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TAGATUBA — videostuudio, mis teeb sarju</title>
+<title>TAGATUBA · videostuudio, mis teeb sarju</title>
 <meta name="description" content="Teeme sinu ettevõttest sarja, mida kliendid ootama jäävad. Igakuine videosisu, stsenaariumid ja haldus. Tasuta strateegiakõne.">
 <meta name="theme-color" content="#14161C">
 <meta property="og:type" content="website">
@@ -357,8 +357,37 @@ footer{background:var(--ink);border-top:1px solid var(--line-d);color:var(--grey
 #notesWrap{display:none;margin-top:12px}
 body.cmode #notesWrap{display:block}
 </style>
+<style>
+/* --- dynamic layer (Arsenal-style) --- */
+#ttProg{position:fixed;top:0;left:0;height:3px;background:var(--red);width:0;z-index:200}
+.ttgrain{position:fixed;inset:-100px;z-index:120;pointer-events:none;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:ttgrain 8s steps(10) infinite}
+@keyframes ttgrain{0%,100%{transform:translate(0,0)}10%{transform:translate(-3%,-6%)}30%{transform:translate(4%,2%)}50%{transform:translate(-4%,7%)}70%{transform:translate(6%,-3%)}90%{transform:translate(-2%,4%)}}
+.ttcur,.ttcur2{position:fixed;top:0;left:0;pointer-events:none;z-index:300;border-radius:50%;display:none}
+.ttcur{width:8px;height:8px;background:var(--red);transform:translate(-50%,-50%)}
+.ttcur2{width:38px;height:38px;border:1.5px solid rgba(229,72,77,.55);transform:translate(-50%,-50%);transition:width .22s,height .22s,border-color .22s,background .22s}
+.ttcur2.big{width:74px;height:74px;border-color:rgba(229,72,77,.9);background:rgba(229,72,77,.08)}
+.ttcur2 span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:8px;letter-spacing:.12em;color:#fff;opacity:0;transition:opacity .2s}
+.ttcur2.big span{opacity:1}
+@media(pointer:fine){.ttcur,.ttcur2{display:block}}
+.tt-hud{position:absolute;top:86px;left:24px;right:24px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--grey);z-index:2;pointer-events:none}
+.tt-hud .rec b{color:var(--red);animation:pulse 1.2s infinite;font-weight:400}
+.tt-hud .rec{color:#fff}
+.n .ct{font-style:normal}
+/* language switcher */
+.lang{display:flex;align-items:center;gap:7px;font-family:var(--mono);font-size:11px;letter-spacing:.1em}
+.lang span,.lang a{color:var(--grey);transition:color .15s;padding:2px 0}
+.lang .on{color:#fff}
+.lang a:hover{color:var(--red)}
+.lang .sep{opacity:.4}
+.mnav .lang{padding:14px 0}
+@media (prefers-reduced-motion:reduce){.ttgrain{animation:none}}
+</style>
 </head>
 <body>
+<div id="ttProg"></div>
+<div class="ttgrain" aria-hidden="true"></div>
+<div class="ttcur" aria-hidden="true"></div>
+<div class="ttcur2" aria-hidden="true"><span id="ttCurLbl">VAATA</span></div>
 
 <nav>
   <div class="nav-in">
@@ -369,6 +398,7 @@ body.cmode #notesWrap{display:block}
       <a href="#formaadid">Formaadid</a>
       <a href="#sarjad">Hinnad</a>
       <a href="#" onclick="openCalc();return false" class="btn btn-out btn-sm" style="color:#fff;border-color:var(--line-d)">Saa oma plaan</a>
+      <div class="lang"><span class="on">ET</span><span class="sep">/</span><a href="tagatuba-en.html" aria-label="In English">EN</a></div>
       <a href="#broneeri" class="btn btn-red btn-sm">Räägime</a>
       <button class="burger" id="burger" aria-label="Menüü" onclick="toggleNav()"><i></i><i></i><i></i></button>
     </div>
@@ -381,12 +411,14 @@ body.cmode #notesWrap{display:block}
   <a href="#tood" onclick="toggleNav()">Tööd ja tiim</a>
   <a href="#sarjad" onclick="toggleNav()">Hinnad</a>
   <a href="#kkk" onclick="toggleNav()">KKK</a>
+  <a href="tagatuba-en.html">EN · In English</a>
   <a href="#" class="btn btn-red" onclick="toggleNav();openCalc();return false">Saa oma plaan</a>
 </div>
 
 <!-- HERO -->
 <header class="hero" id="top">
   <div class="hero-rings" aria-hidden="true"><i></i><i></i><i></i><b></b></div>
+  <div class="tt-hud" aria-hidden="true"><span class="rec"><b>●</b> REC</span><span id="ttTc">TC 00:00:00:00</span></div>
   <div class="wrap">
     <div class="mono" style="color:var(--grey);margin-bottom:20px"><span class="dot pulse"></span>VIDEOSTUUDIO, MIS TEEB SARJU</div>
     <h1>Inimesed ei vaata enam reklaame.<br><span class="r">Nad vaatavad tagatube.</span></h1>
@@ -485,10 +517,10 @@ body.cmode #notesWrap{display:block}
     <p class="sec-sub rv" style="margin-top:26px;max-width:760px">Ühe suure reklaamiga aastas ei ehita keegi brändi, mida jälgitakse. Ja ainult lühivideotega ei ehita brändi, mida võetakse tõsiselt. Vaja on mõlemat, aga õiges järjekorras: kõigepealt keskmine kiht käima, siis suur lugu peale.</p>
 
     <div class="stats">
-      <div class="stat rv"><div class="n">78%</div><p>ütleb, et brändi tagatoa sisu paneb neid brändiga rohkem seotust tundma</p><span>BRAND AUTHENTICITY STATS 2026</span></div>
-      <div class="stat rv"><div class="n">64%</div><p>usaldab brändi rohkem, kui see näitab oma töötajaid sotsiaalmeedias</p><span>BRAND AUTHENTICITY STATS 2026</span></div>
-      <div class="stat rv"><div class="n">52%</div><p>kaotab huvi kohe, kui kahtlustab, et sisu on tehisintellektiga tehtud</p><span>CONTENT MARKETING TRENDS 2026</span></div>
-      <div class="stat rv"><div class="n">2,2%</div><p>on Facebooki orgaaniline levik. Ilma hea sisuta ei näe sind praktiliselt keegi</p><span>SENDIBLE SOCIAL TRENDS 2026</span></div>
+      <div class="stat rv"><div class="n"><em class="ct" data-count="78" data-suf="%">0</em></div><p>ütleb, et brändi tagatoa sisu paneb neid brändiga rohkem seotust tundma</p><span>BRAND AUTHENTICITY STATS 2026</span></div>
+      <div class="stat rv"><div class="n"><em class="ct" data-count="64" data-suf="%">0</em></div><p>usaldab brändi rohkem, kui see näitab oma töötajaid sotsiaalmeedias</p><span>BRAND AUTHENTICITY STATS 2026</span></div>
+      <div class="stat rv"><div class="n"><em class="ct" data-count="52" data-suf="%">0</em></div><p>kaotab huvi kohe, kui kahtlustab, et sisu on tehisintellektiga tehtud</p><span>CONTENT MARKETING TRENDS 2026</span></div>
+      <div class="stat rv"><div class="n"><em class="ct" data-count="2.2" data-dec="1" data-suf="%">0</em></div><p>on Facebooki orgaaniline levik. Ilma hea sisuta ei näe sind praktiliselt keegi</p><span>SENDIBLE SOCIAL TRENDS 2026</span></div>
     </div>
   </div>
 </section>
@@ -1019,8 +1051,8 @@ body.cmode #notesWrap{display:block}
       <div class="cstep" id="cs7">
         <div class="cres">
           <span class="mono">MEIE SOOVITUS</span>
-          <b id="rName">—</b>
-          <div class="pr" id="rPrice">—</div>
+          <b id="rName">…</b>
+          <div class="pr" id="rPrice">…</div>
           <p id="rDesc"></p>
         </div>
         <h4 style="font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;color:var(--red);margin-bottom:10px">MIKS JUST SEE</h4>
@@ -1260,7 +1292,7 @@ function cCalc(){
   if(!rv('urgency')||!rv('decider')){alert('Palun vasta veel kahele küsimusele üleval.');return}
   const goal=rv('goal'),cam=rv('cam'),vol=rv('vol'),style=rv('style'),hald=rv('hald'),ch=cvs('ch'),
         indSel=document.getElementById('q_ind').value,indOtherV=document.getElementById('q_ind_other').value.trim(),
-        ind=(indSel==='Muu'&&indOtherV)?('Muu — '+indOtherV):indSel,
+        ind=(indSel==='Muu'&&indOtherV)?('Muu: '+indOtherV):indSel,
         emp=rv('emp'),rev=rv('rev'),yrs=rv('yrs'),prior=rv('prior'),urgency=rv('urgency'),decider=rv('decider');
   let name,price,desc;const why=[];
   const camOk=(cam==='jah'||cam==='moni');
@@ -1295,10 +1327,10 @@ function cCalc(){
   document.getElementById('rPrice').textContent=price;
   document.getElementById('rDesc').textContent=desc;
   document.getElementById('rWhy').innerHTML=why.map(w=>'<div class="li">'+w+'</div>').join('');
-  const g=id=>document.getElementById(id).value.trim()||'—';
+  const g=id=>document.getElementById(id).value.trim()||'-';
   SUM='=== SISUPLAANI PÄRING ===\n'+cp+' | '+nm+' | '+ml+' | '+g('q_tel')+
-  '\nValdkond: '+(ind||'—')+' | Töötajaid: '+(emp||'—')+' | Käive: '+(rev||'—')+' | Tegutsenud: '+(yrs||'—')+
-  '\n\n--- VALIKUD ---\nEesmärk: '+goal+'\nKaameravalmidus: '+cam+'\nSoovitud maht: '+vol+'\nStiil: '+style+'\nKanalid: '+(ch.join(', ')||'—')+'\nHaldus: '+hald+
+  '\nValdkond: '+(ind||'-')+' | Töötajaid: '+(emp||'-')+' | Käive: '+(rev||'-')+' | Tegutsenud: '+(yrs||'-')+
+  '\n\n--- VALIKUD ---\nEesmärk: '+goal+'\nKaameravalmidus: '+cam+'\nSoovitud maht: '+vol+'\nStiil: '+style+'\nKanalid: '+(ch.join(', ')||'-')+'\nHaldus: '+hald+
   '\n\n--- KONKURENTS JA KOGEMUS ---\nVarasem kogemus: '+prior+'\nKonkurendid: '+g('q_comp1')+'\nMida nemad paremini teevad: '+g('q_comp2')+'\nEristumine: '+g('q_diff')+
   '\n\n--- ÄRIST LÄHEMALT ---\nToode/teenus: '+g('q_biz')+'\nUnistuste klient: '+g('q_aud')+'\nEesmärk numbrites (6k): '+g('q_goal')+'\nLugu/tegelane: '+g('q_star')+'\nFrustratsioon: '+g('q_pain')+
   '\n\n--- AJAKAVA ---\nAlgusaeg: '+urgency+'\nOtsustaja: '+decider+
@@ -1315,6 +1347,23 @@ function copySum(){
   navigator.clipboard.writeText(SUM).then(()=>{b.textContent='Kopeeritud ✓';setTimeout(()=>b.textContent='Kopeeri kokkuvõte',2000)}).catch(()=>alert(SUM));
 }
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeM();closeCalc()}});
+</script>
+<script>
+(function(){
+  var prog=document.getElementById('ttProg');
+  addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-innerHeight;prog.style.width=(h>0?scrollY/h*100:0)+'%'},{passive:true});
+  var cur=document.querySelector('.ttcur'),cur2=document.querySelector('.ttcur2'),lbl=document.getElementById('ttCurLbl');
+  if(matchMedia('(pointer:fine)').matches){
+    var mx=0,my=0,cx=0,cy=0;
+    addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';var t=e.target.closest('[data-cursor]');if(t){cur2.classList.add('big');lbl.textContent=t.dataset.cursor||'VAATA'}else cur2.classList.remove('big')});
+    (function l(){cx+=(mx-cx)*.16;cy+=(my-cy)*.16;cur2.style.left=cx+'px';cur2.style.top=cy+'px';requestAnimationFrame(l)})();
+  }
+  document.querySelectorAll('.fmt,.work,.post').forEach(function(el){el.dataset.cursor='VAATA'});
+  var tc=document.getElementById('ttTc');
+  if(tc){var t0=Date.now();setInterval(function(){var ms=Date.now()-t0,f=Math.floor(ms/(1000/24))%24,ss=Math.floor(ms/1000)%60,mm=Math.floor(ms/60000)%60,hh=Math.floor(ms/3600000),p=function(n){return String(n).padStart(2,'0')};tc.textContent='TC '+p(hh)+':'+p(mm)+':'+p(ss)+':'+p(f)},42);}
+  var cio=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;cio.unobserve(e.target);var el=e.target,end=parseFloat(el.dataset.count),dec=+(el.dataset.dec||0),suf=el.dataset.suf||'',t0=performance.now(),dur=1400;(function st(t){var p=Math.min(1,(t-t0)/dur),v=end*(1-Math.pow(1-p,3));el.textContent=(dec?v.toFixed(dec).replace('.',','):Math.round(v))+suf;if(p<1)requestAnimationFrame(st)})(t0)})},{threshold:.5});
+  document.querySelectorAll('.ct').forEach(function(el){cio.observe(el)});
+})();
 </script>
 </body>
 </html>
